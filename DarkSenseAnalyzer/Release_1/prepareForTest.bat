@@ -1,0 +1,1 @@
+move DarkSenseAnalyzer_1.exe ../../Analyzers/Evolution
