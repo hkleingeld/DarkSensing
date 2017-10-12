@@ -1,5 +1,5 @@
 using namespace std;
-#define DEBUG
+//#define DEBUG
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -9,9 +9,10 @@ using namespace std;
 #include "../Shared/Filters/FIR_Filter.hpp"
 
 
+
 char itoaBuffer[10];
 char FileToOpen[100] = {0};
-char startFileName[] = "bjarki center\\Result_";
+char startFileName[] = "danielle close\\Result_";
 char fromMatlab[100] = {0};
 char endFileName[] = ".txt";
 
@@ -24,7 +25,7 @@ uint16_t NrOFiles;
 #define NR_OF_ALGS 100
 
 uint16_t data[200][20000] = {0};
-uint32_t lessons[200][20];
+static uint32_t lessons[200][20];
 
 /* -1 = False positive (detection before 800) *
  *  0 = No detection                         *
@@ -78,6 +79,44 @@ void resetDetection(void){
 	lastDetectionLoc = 0;
 }
 
+#ifdef TP_MODE /*compile for True positive only mode (for SOC curve)*/
+
+int CheckDetection(uint32_t n, uint16_t fileNumber){
+	int i = 0;
+	while(lessons[fileNumber][i] != 0){
+		if((n > lessons[fileNumber][i]) && (n < lessons[fileNumber][i]+lessons[fileNumber][i+1])){
+			if((lastDetectionLoc > lessons[fileNumber][i]) && (lastDetectionLoc < lessons[fileNumber][i]+lessons[fileNumber][i+1])){
+				return 0; /*we have already detected this one*/
+			}
+			cout << "x";
+			return 1; /*new detection!*/
+		}
+		i++;
+	}
+	//cout << "o";
+	return 0; /*false positive*/
+}
+
+#elif defined(FP_MODE) /*compile for False positive only mode (for SOC curve)*/
+
+int CheckDetection(uint32_t n, uint16_t fileNumber){
+	int i = 0;
+	while(lessons[fileNumber][i] != 0){
+		if((n > lessons[fileNumber][i]) && (n < lessons[fileNumber][i]+lessons[fileNumber][i+1])){
+			if((lastDetectionLoc > lessons[fileNumber][i]) && (lastDetectionLoc < lessons[fileNumber][i]+lessons[fileNumber][i+1])){
+				return 0; /*we have already detected this one*/
+			}
+			//cout << "x";
+			return 0; /*new detection!*/
+		}
+		i++;
+	}
+	cout << "o";
+	return 1; /*false positive*/
+}
+
+#else /*compile for both (Evolution mode)*/
+
 int CheckDetection(uint32_t n, uint16_t fileNumber){
 	int i = 0;
 	while(lessons[fileNumber][i] != 0){
@@ -93,6 +132,8 @@ int CheckDetection(uint32_t n, uint16_t fileNumber){
 	cout << "o";
 	return -1; /*false positive*/
 }
+
+#endif
 
 
 
@@ -126,7 +167,7 @@ int main(int argc, char *argv[]){
 		FromFile = atoi(argv[7]);
 		ToFile = atoi(argv[8]);
 
-		if((n < 0) || (d < 0) || (m < 3) || (T < 1) || (z < 1)){
+		if((n < 0) || (d < 0) || (m < 3) || (T < 0.1) || (z < 1)){
 			cout << "Argument too small to run properly! please fix!\n";
 			return -9001;
 		}
@@ -142,11 +183,11 @@ int main(int argc, char *argv[]){
 #endif
 	}
 	else{
-		n = 100;
+		n = 7;
 		d = 300;
 		m = 800;
-		z = 4;
-		T = 8.2;
+		z = 1;
+		T = 0.5;
 		FromFile = 1;
 		ToFile = 6;
 		NrOFiles = ToFile - FromFile + 1;
@@ -233,10 +274,11 @@ int main(int argc, char *argv[]){
 
 			if(algorithmUpdate(Alg,IIR_2(data[i][sampleNumber]))){
 #ifdef DEBUG
-//				cout << i+1 << " @ " << sampleNumber << "\n";
+				cout << i+1 << " @ " << sampleNumber << "\n";
 #endif
 				score += CheckDetection(sampleNumber, i);
-				break;
+				if(score != prevScore)
+					break;
 			}
 
 			sampleNumber++;
