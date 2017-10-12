@@ -19,13 +19,13 @@ D = num2str(d);
 M = num2str(m);
 Z = num2str(z);
 
-[dc SIZE] = size(1:1:200)
+T_ = 1:4:100
+[dc SIZE] = size(T_)
 
 result = zeros(SIZE,3)
-i = 0;
-for T_ = 1:1:200
-    i = i + 1;
-    T = num2str(T_/10);
+
+parfor i = 1:SIZE
+    T = num2str(T_(i)/10);
     TruePositive = 0;
     TruePositive = TruePositive + system([prog_1 ' ' path1 ' ' N ' ' D ' ' M ' ' Z ' ' T ' 3 13']);
     TruePositive = TruePositive + system([prog_1 ' ' path2 ' ' N ' ' D ' ' M ' ' Z ' ' T ' 3 13']);
@@ -56,8 +56,7 @@ for T_ = 1:1:200
 %     FlasePositive = FlasePositive + system([prog_4 ' ' path5 ' ' N ' ' D ' ' M ' ' Z ' ' T ' 3 13']);
 %     FlasePositive = FlasePositive + system([prog_4 ' ' path6 ' ' N ' ' D ' ' M ' ' Z ' ' T ' 3 13']);
     
-    result(i,:) = [T_/10 TruePositive FlasePositive];
-    T_
+    result(i,:) = [T_(i)/10 TruePositive FlasePositive];
 end
 
 
