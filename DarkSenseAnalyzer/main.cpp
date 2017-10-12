@@ -12,7 +12,7 @@ using namespace std;
 
 char itoaBuffer[10];
 char FileToOpen[100] = {0};
-char startFileName[] = "danielle close\\Result_";
+char startFileName[] = "stone\\black ";
 char fromMatlab[100] = {0};
 char endFileName[] = ".txt";
 
@@ -78,6 +78,7 @@ uint32_t lastDetectionLoc = 0;
 void resetDetection(void){
 	lastDetectionLoc = 0;
 }
+
 
 #ifdef TP_MODE /*compile for True positive only mode (for SOC curve)*/
 
@@ -187,9 +188,9 @@ int main(int argc, char *argv[]){
 		d = 300;
 		m = 800;
 		z = 1;
-		T = 0.5;
-		FromFile = 1;
-		ToFile = 6;
+		T = 0.1;
+		FromFile = 3;
+		ToFile = 13;
 		NrOFiles = ToFile - FromFile + 1;
 
 #ifdef DEBUG
@@ -205,7 +206,7 @@ int main(int argc, char *argv[]){
 #endif
 	fstream file;
 
-	for(uint16_t fileNumber = 0; fileNumber+FromFile<NrOFiles+1; fileNumber++){
+	for(uint16_t fileNumber = 0; fileNumber+FromFile<NrOFiles+FromFile; fileNumber++){
 		if(fromMatlab[0] != 0)
 			strcpy(FileToOpen,fromMatlab);
 		else
