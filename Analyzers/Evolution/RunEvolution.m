@@ -1,4 +1,6 @@
 clear all
+% good seetings found:      0   164   566     2    54 = 15/66
+
 
 % n = number of sapmles in N, if n == 0, then FFT mode
 % d = number of sapmles in D
@@ -7,8 +9,8 @@ clear all
 % T = scalefactor /10 (35 becomes T = 3.5)
 %
 %     n   d   m   z   T
-LB = [0   0   3   1   10 ]; %lower bound
-UB = [0   300 800 5   400]; %upper bound
+LB = [0   0   0   1   1 ]; %lower bound
+UB = [0   0   800 5   400]; %upper bound
 
 %tbh, no clue what this does, just copy pasted it form the web, it puts up
 %a screen which plots the progression of the algorithm

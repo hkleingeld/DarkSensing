@@ -24,7 +24,7 @@ T_ = 1:4:100
 
 result = zeros(SIZE,3)
 
-parfor i = 1:SIZE
+for i = 1:SIZE
     T = num2str(T_(i)/10);
     TruePositive = 0;
     TruePositive = TruePositive + system([prog_1 ' ' path1 ' ' N ' ' D ' ' M ' ' Z ' ' T ' 3 13']);

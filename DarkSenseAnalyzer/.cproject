@@ -28,7 +28,7 @@
 								<option id="gnu.cpp.compiler.option.preprocessor.def.1185298476" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="VAL_FROM_FILE=1"/>
 									<listOptionValue builtIn="false" value="SCALE_FFT_MODE"/>
-									<listOptionValue builtIn="false" value="TP_MODE"/>
+									<listOptionValue builtIn="false" value="FP_MODE"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1102827739" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -184,7 +184,7 @@
 								<option id="gnu.cpp.compiler.mingw.exe.release.option.optimization.level.1591456192" name="Optimization Level" superClass="gnu.cpp.compiler.mingw.exe.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.mingw.exe.release.option.debugging.level.953874045" name="Debug Level" superClass="gnu.cpp.compiler.mingw.exe.release.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.381364739" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
-									<listOptionValue builtIn="false" value="VAL_FROM_FILE=2"/>
+									<listOptionValue builtIn="false" value="VAL_FROM_FILE=1"/>
 									<listOptionValue builtIn="false" value="SCALE_FFT_MODE"/>
 									<listOptionValue builtIn="false" value="FP_MODE"/>
 								</option>
