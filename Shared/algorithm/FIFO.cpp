@@ -126,7 +126,7 @@ FIFO * FIFOInit(uint16_t size){
 
 	/*memset for floats*/
 	for(uint16_t i = 0; i < size; i++){
-		F->Array[i] = FLT_MAX;
+		F->Array[i] = 99999;
 	}
 
 	F->size = size;
