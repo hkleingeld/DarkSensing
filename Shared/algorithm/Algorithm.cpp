@@ -32,16 +32,16 @@ Algorithm * algorithmInit(uint16_t n, uint16_t d, uint16_t m, uint8_t z, float T
         alg->scalingThresholdMode = true;
 
         //We later calculate the FFT or average over FIFO n with FFT_Size samples, and then set n accordingly.
-        alg->FIFO_n = FIFOInit(FFT_SIZE);
+        alg->FIFO_n = FIFOInit(FFT_SIZE,FIFO_USE_AVG);
     }
     else{
         alg->scalingThresholdMode = false;
-        alg->FIFO_n = FIFOInit(n);
+        alg->FIFO_n = FIFOInit(n,FIFO_USE_AVG);
     }
     if((alg->FIFO_n == NULL)) return NULL;
 
     if(d != 0){
-        alg->FIFO_d = FIFOInit(d);
+        alg->FIFO_d = FIFOInit(d,0);
         if(alg->FIFO_d == NULL) return NULL;
     }
     else{
@@ -52,7 +52,7 @@ Algorithm * algorithmInit(uint16_t n, uint16_t d, uint16_t m, uint8_t z, float T
         m = 1;
         std::cout << "m == 0! Using m = 1 instead, please double check algorithm settings!!!";
     }
-    alg->FIFO_m = FIFOInit(m);
+    alg->FIFO_m = FIFOInit(m,FIFO_USE_VAR);
     if((alg->FIFO_m == NULL))    return NULL;
 
     if(z < 1){
@@ -178,7 +178,7 @@ bool algorithmUpdate(Algorithm * This, float NewSample){
 
     S = FIFOUpdate(This->FIFO_m,S);
 
-    if(S == (float)99999){
+    if(This->SampleNr < (uint16_t)(This->m + This->d + FFT_SIZE)){
         return false; // we are still in init mode
     }
 
@@ -187,7 +187,7 @@ bool algorithmUpdate(Algorithm * This, float NewSample){
     S = This->mu;
 
     //Calculate deviation over m
-    float varriance = FIFOVariance(This->FIFO_m, This->mu);
+    float varriance = FIFOVariance(This->FIFO_m);
     This->sigma = MAX(sqrt(varriance),0.1);
 
     float Threshold = This->T * This->sigma;

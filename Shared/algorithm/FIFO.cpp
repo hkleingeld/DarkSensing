@@ -6,31 +6,25 @@
 
 #include "FIFO.hpp"
 
-static void updateSum(FIFO * This, float newSample, float oldSample){
-	This->sum = This->sum - oldSample + newSample;
-}
-
-static void updateSquaredSum(FIFO * This, float newSample, float oldSample){
-	This->squaredSum = This->squaredSum - pow(oldSample,2) + pow(newSample,2);
-}
 
 float FIFOUpdate(FIFO * This, float newSample){
-	float retval = This->Array[This->index];
+	float oldSample = This->Array[This->index];
 	This->Array[This->index] = newSample;
 	This->index++;
 	if(This->index == This->size){
 		This->index = 0;
+		This->FIFOFull = true;
 	}
 
-	if(This->updateSum == true){
-		updateSum(This, newSample, retval);
+	if(This->needAvg||This->needVar){
+		double oldavg = This->avg;
+		This->avg = oldavg + (newSample - oldSample) / This->size;
+		if(This->needVar){
+			This->var += (newSample - oldSample) * (newSample - This->avg + oldSample - oldavg) / (This->size-1);
+		}
 	}
 
-	if(This->updateSquaredSum == true){
-		updateSquaredSum(This, newSample, retval);
-	}
-
-	return retval;
+	return oldSample;
 }
 
 void FIFOReset(FIFO * This){
@@ -38,28 +32,24 @@ void FIFOReset(FIFO * This){
 
 	/*memset for floats*/
 	for(uint16_t i = 0; i < This->size; i++){
-		This->Array[i] = 99999;
+		This->Array[i] = 0;
 	}
 
-	This->updateSum = false;
-	This->sum = 0;
+	This->FIFOFull = false;
 
-	This->updateSquaredSum = false;
+	This->sum = 0;
 	This->squaredSum = 0;
+	This->avg = 0;
+	This->var = 0;
 }
 
 float FIFOSum(FIFO * This){
 	float sum = 0;
-	if(This->updateSum){
-		return This->sum;
-	}
 
 	for(uint16_t i = 0; i < This->size; i++){
 		sum += This->Array[i];
 	}
 
-	This->sum = sum;
-	This->updateSum = true;
 	return sum;
 }
 
@@ -82,42 +72,26 @@ float FIFOSquaredSum(FIFO * This){
 	uint16_t i;
 	float squaredSum = 0;
 
-	if(This->updateSquaredSum){
-		return This->squaredSum;
-	}
-
 	for(i = 0; i < This->size; i++){
 		squaredSum += pow(This->Array[i],2);
 	}
 
-	This->squaredSum = squaredSum;
-	This->updateSquaredSum = true;
 	return squaredSum;
 }
 
 float FIFOAverage(FIFO * This){
-	return ((float) FIFOSum(This) / (float) This->size);
+	return This->avg;
 }
 
 float FIFOPartialAverage(FIFO * This, uint16_t n){
 	return FIFOPartialSum(This,n)/n;
 }
 
-float FIFOVariance(FIFO * This, float mean){
-// Old method
-//	for(i = 0; i < This->size; i++){
-//		variance += pow((float) This->Array[i] - mean,2);
-//	}
-	float sqSum = FIFOSquaredSum(This);
-	float sum = FIFOSum(This);
-
-	float devisor = (This->size*(This->size-1));
-	// New method
-	//https://www.johndcook.com/blog/2008/09/26/comparing-three-methods-of-computing-standard-deviation/
-	return ((float) (This->size * sqSum - pow(sum,2))) / (devisor);
+float FIFOVariance(FIFO * This){
+	return This->var;
 }
 
-FIFO * FIFOInit(uint16_t size){
+FIFO * FIFOInit(uint16_t size, uint8_t options){
 	FIFO * F = (FIFO *) malloc(sizeof(FIFO));
 	if(F == NULL) return NULL;
 
@@ -126,17 +100,30 @@ FIFO * FIFOInit(uint16_t size){
 
 	/*memset for floats*/
 	for(uint16_t i = 0; i < size; i++){
-		F->Array[i] = 99999;
+		F->Array[i] = 0;
 	}
 
 	F->size = size;
 	F->index = 0;
 
-	F->updateSum = false;
-	F->updateSquaredSum = false;
-
 	F->sum = 0;
 	F->squaredSum = 0;
+	F->avg = 0;
+	F->var = 0;
+
+	if(options & FIFO_USE_AVG){
+		F->needAvg = true;
+	}
+	else{
+		F->needAvg = false;
+	}
+
+	if(options & FIFO_USE_VAR){
+		F->needVar = true;
+	}
+	else{
+		F->needVar = false;
+	}
 
 	return(F);
 }

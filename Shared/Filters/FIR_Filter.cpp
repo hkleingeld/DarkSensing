@@ -48,20 +48,19 @@ float FIR_10(uint16_t X0){
 	return Y0;
 }
 
-float G[] = {0.0055, 1.0000};
-float SOS[] = {1.0000, 2.0000, 1.0000, 1.0000, -1.7786, 0.8008};
-
+// s = designfilt('lowpassiir', 'FilterOrder', 2, 'HalfPowerFrequency', 5, 'SampleRate', 125);
+//0.0134 0.0267 0.0134 1 -1.6475 0.7009
 float IIR_2(float X0){
 	static float W0 = 0;
 	static float W1 = 0;
 	static float W2 = 0;
 
-	const float a0 = G[1]*SOS[3];
-	const float a1 = G[1]*SOS[4];
-	const float a2 = G[1]*SOS[5];
-	const float b0 = G[0]*SOS[0];
-	const float b1 = G[0]*SOS[1];
-	const float b2 = G[0]*SOS[2];
+	//const float a0 = 1;
+	const float a1 = -1.6475;
+	const float a2 = 0.7009;
+	const float b0 = 0.0134;
+	const float b1 = 0.0267;
+	const float b2 = 0.0134;
 
 	float Yn;
 
