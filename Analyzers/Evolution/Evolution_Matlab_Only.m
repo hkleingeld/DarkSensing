@@ -4,11 +4,12 @@ n = x(1);
 d = x(2);
 m = x(3);
 z = x(4);
-T = x(5)/10;
+Z = x(5);
+T = x(6)/10;
 
 loc = {'close';'center';'far'};
 path = '..\data\Measurements\day\';
-name = {('bjarki ');('danielle ');('erik ');('hajo ');('joris ');('marco ');('rens ');('shashwad ')};
+name = {('bjarki ');('danielle ');('erik ');('joris ');('marco ');('rens ');('shashwad ')};%('hajo ')};
 
 % path = '..\data\Measurements\night\';
 % name = {('hajo ');('james ');('joris ');('joris ');('mick ');('timo ')};
@@ -19,7 +20,7 @@ result = zeros(1,2);
 s = designfilt('lowpassiir', 'FilterOrder', 2, 'HalfPowerFrequency', 5, 'SampleRate', 125);
 
 for i = 1:3
-    parfor j = 1:8
+    for j = 1:7
         for k = 1:6
             file = char(strcat(path,name(j),loc(i),'\result_',filenr(k),'.txt'));
             x = csvread(file);
@@ -28,7 +29,7 @@ for i = 1:3
             x = filter(s,x(:,1));
 
             result = result + AlgorithmSTD(x,m,d,T,lesson);
-           % result = result + Algorithm(x,n,d,m,z,T,lesson);
+            % result = result + Algorithm(x,n,d,m,z,Z,T,lesson);
         end
     end
 end
