@@ -26,6 +26,12 @@ MultipleLightPosts = @(x,y) Ehor(x-15,y,H) + Ehor(x-30,y,H) + Ehor(x,y,H) + Ehor
 
 [integral mean ratio] = NumericIntegration(MultipleLightPosts,0, 30, -2, 6,step);
 
-mean = mean*100 %convert mean from lux/dm^2 to lux/m^2
+mean = mean*100; %convert mean from lux/dm^2 to lux/m^2
 
+mean % mean should be higher than 3 lx (Ehor mean)
+ratio %ratio should be higher than 0.2 Uh
 fmesh(MultipleLightPosts,[-5 35 -2 6])
+title('Illumination pattern of the street model')
+zlabel('E_h_o_r (lx)')
+xlabel ('x-axis')
+ylabel('y-axis')
