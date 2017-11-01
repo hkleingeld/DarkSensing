@@ -47,3 +47,6 @@
 \BOOKMARK [1][-]{section.8.2}{Future Work}{chapter.8}% 47
 \BOOKMARK [0][-]{appendix.A}{Code repository}{}% 48
 \BOOKMARK [0][-]{appendix.B}{Raw Model results}{}% 49
+\BOOKMARK [0][-]{appendix.C}{Flash analyser schematics}{}% 50
+\BOOKMARK [1][-]{section.C.1}{LED driver}{appendix.C}% 51
+\BOOKMARK [1][-]{section.C.2}{Interfaces between components}{appendix.C}% 52

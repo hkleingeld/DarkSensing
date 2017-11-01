@@ -48,3 +48,6 @@
 \contentsline {section}{\numberline {8.2}Future Work}{33}{section.8.2}
 \contentsline {chapter}{\numberline {A}Code repository}{37}{appendix.A}
 \contentsline {chapter}{\numberline {B}Raw Model results}{39}{appendix.B}
+\contentsline {chapter}{\numberline {C}Flash analyser schematics}{41}{appendix.C}
+\contentsline {section}{\numberline {C.1}LED driver}{41}{section.C.1}
+\contentsline {section}{\numberline {C.2}Interfaces between components}{41}{section.C.2}
