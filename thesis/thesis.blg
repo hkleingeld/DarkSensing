@@ -1,0 +1,39 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: thesis.aux
+A level-1 auxiliary file: template/frontcover.aux
+A level-1 auxiliary file: template/titlepage.aux
+A level-1 auxiliary file: template/graduationdata.aux
+A level-1 auxiliary file: chapters/preface.aux
+A level-1 auxiliary file: chapters/introduction.aux
+A level-1 auxiliary file: chapters/Background.aux
+A level-1 auxiliary file: chapters/RelatedWork.aux
+A level-1 auxiliary file: chapters/Model.aux
+A level-1 auxiliary file: chapters/Flash_Analysis.aux
+A level-1 auxiliary file: chapters/Algorithm.aux
+A level-1 auxiliary file: chapters/System_Evaluation.aux
+A level-1 auxiliary file: chapters/conclusionsandfuturework.aux
+The style file: bib/latex8.bst
+Database file #1: bib/mycollection.bib
+I was expecting a `,' or a `}'---line 133 of file bib/mycollection.bib
+ :  
+ :  title     = "The Lighting Handbook",
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "@needref@"
+Name 1 in "Tianxing Li, Chuankai An, Zhao Tian, Andrew T. Campbell, and Xia Zhou" has a comma at the end for entry Human_Sensing_Using_VLC
+while executing---line 1069 of file bib/latex8.bst
+Too many commas in name 1 of "Tianxing Li, Chuankai An, Zhao Tian, Andrew T. Campbell, and Xia Zhou" for entry Human_Sensing_Using_VLC
+while executing---line 1069 of file bib/latex8.bst
+Too many commas in name 1 of "Taha, H. ; Sailor, D. ; Akbari, H." for entry Albedo
+while executing---line 1069 of file bib/latex8.bst
+Too many commas in name 1 of "F.M. Dekking, C. Kraaikamp, H.P. Lopuhaä, L.E. Meester" for entry Confidence_interval
+while executing---line 1069 of file bib/latex8.bst
+Warning--can't use both author and editor fields in HandboekBestaandeBouw
+Too many commas in name 1 of "F.M. Dekking, C. Kraaikamp, H.P. Lopuhaä, L.E. Meester" for entry Confidence_interval
+while executing---line 1111 of file bib/latex8.bst
+Too many commas in name 1 of "Taha, H. ; Sailor, D. ; Akbari, H." for entry Albedo
+while executing---line 1111 of file bib/latex8.bst
+Name 1 in "Tianxing Li, Chuankai An, Zhao Tian, Andrew T. Campbell, and Xia Zhou" has a comma at the end for entry Human_Sensing_Using_VLC
+while executing---line 1111 of file bib/latex8.bst
+Too many commas in name 1 of "Tianxing Li, Chuankai An, Zhao Tian, Andrew T. Campbell, and Xia Zhou" for entry Human_Sensing_Using_VLC
+while executing---line 1111 of file bib/latex8.bst
+(There were 9 error messages)

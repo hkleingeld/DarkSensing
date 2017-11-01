@@ -1,0 +1,153 @@
+% This document provides the style to be used for a MSc Thesis at the
+% Parallel and Distributed Systems group
+\documentclass[11pt,twoside,a4paper,openright]{report}
+
+% math packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% textblocks for title page
+\usepackage[absolute]{textpos}
+
+% use babel for proper hyphenation
+\usepackage[british]{babel}
+
+% Graphics: different for pdflatex or dvi output, choose one
+%%\usepackage[dvips]{graphicx}
+%%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+
+\usepackage{epstopdf}
+\usepackage{rotating}
+\usepackage{subfigure}
+\usepackage[table,xcdraw]{xcolor}
+
+\usepackage{forest}
+
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+
+\def\Size{4pt}
+\tikzset{
+	folder/.pic={
+		\filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+		(-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);  
+		\filldraw[draw=folderborder,top color=folderbg!50,bottom color=folderbg]
+		(-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
+	}
+}
+
+% FONT
+\usepackage[scaled=.92]{helvet}
+%\usepackage{times}
+
+% for url's use "\url{http://www.google.com/}"
+\usepackage{url}
+\usepackage[plainpages=false]{hyperref} 
+
+% Information that will be filled in at various points in the report
+\newcommand{\reportTitle}{Sensing human activity with dark light}
+\newcommand{\reportAuthor}{Hajo Kleingeld}
+\newcommand{\reportEmail}{hajokleingeld@gmail.com}
+\newcommand{\reportUrlEmail}{\href{mailto:\reportEmail}{\reportEmail}}
+\newcommand{\reportMSC}{Embedded Systems} %{Embedded Systems}{Computer Engineering}{Computer Science}{Electrical Engineering}
+\newcommand{\reportDate}{\today} %TODO: Dit is de datum van uitgifte van final versie aan de afstudeer commissie 
+\newcommand{\presentationDate}{\today} %TODO: Dit is de datum van de afstudeerpresentatie 
+\newcommand{\graduationCommittee}{
+Prof. dr. K.G. Langendoen (Chair) & Delft University of Technology \\
+dr. M. Zuniga (Daily Supervisor) & Delft University of Technology \\
+dr. C. Doerr & Delft University of Technology \\
+} % The order of listing the names: Graduation prof, supervisor(s), others ordered by title + alphabetical 
+%examples: 
+%prof. dr. ir. H. J. Sips (chair) & Delft University of Technology \\ 
+%ir. dr. D. H. J. Epema           & Delft University of Technology \\ 
+\newcommand{\reportAbstract}{TODO ABSTRACT}
+\newcommand{\reportKeywords}{TODO KEYWORDS}
+
+% For pdflatex
+\pdfinfo{
+   /Author (\reportAuthor)
+   /Title  (\reportTitle)
+   /Keywords (\reportKeywords)
+}
+
+\begin{document}
+
+\pagenumbering{alph}
+\pagestyle{empty}
+
+
+% FRONTCOVER
+\include{template/frontcover}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hoffset=1.63cm
+\oddsidemargin=0in
+\evensidemargin=0in
+\textwidth=5in
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parindent=1em
+
+% EMPTY PAGE
+\cleardoublepage
+
+\pagestyle{plain}
+\pagenumbering{roman}
+\setcounter{page}{1}
+
+% TITLE PAGE: page i (hidden)
+\include{template/titlepage}
+
+% GRADUATION DATA AND ABSTRACT: pages ii and iii (hidden)
+\include{template/graduationdata}
+%\setcounter{page}{4}
+
+% EMPTY PAGE: page iv
+\cleardoublepage
+
+% OPTIONAL QUOTATION: page v
+%\include{quotation}
+% EMPTY PAGE: page vi
+%\cleardoublepage
+
+% PREFACE: page v
+\include{chapters/preface}
+% EMPTY PAGE: page vi
+\cleardoublepage
+
+% TABLE OF CONTENTS: starting at page vii
+\tableofcontents
+
+\cleardoublepage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% INTRODUCTION: page 1
+\include{chapters/introduction}
+
+% CHAPTERS ... For instance: History/Prior Work, Design/Implementation, Experiments
+\include{chapters/Background}
+\include{chapters/RelatedWork}
+\include{chapters/Model}
+\include{chapters/Flash_Analysis}
+\include{chapters/Algorithm}
+\include{chapters/System_Evaluation}
+
+% CONCLUSIONS AND FUTURE WORK
+\include{chapters/conclusionsandfuturework}
+
+% BIBLIOGRAPHY
+%#define SORTED 1
+\bibliographystyle{bib/latex8}
+\bibliography{bib/mycollection}
+
+\appendix
+
+\include{appendix/appendix_a}
+
+\include{appendix/appendix_b}
+
+\end{document}
+

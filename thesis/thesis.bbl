@@ -1,0 +1,91 @@
+\begin{thebibliography}{10}\setlength{\itemsep}{-1ex}\small
+
+\bibitem{3reflections}
+Marilyne Andersen.
+\newblock Types of reflection.
+\newblock https://www.flickr.com/photos/mitopencourseware/4815499473/.
+
+\bibitem{HandboekBestaandeBouw}
+Lilian~Tieman Chris van~der Nat, Hans~Schelvis.
+\newblock {\em Bestaande bouw, Handboek Politiekeurmerk Veilig Wonen}.
+\newblock Centrum voor Criminaliteitspreventie en Veiligheid, december 2015.
+
+\bibitem{Confidence_interval}
+H.P. Lopuhaä L.E.~Meester F.M.~Dekking, C.~Kraaikamp.
+\newblock {\em A modern introduction to probability and statistics}, chapter
+  Confidence intervals for the mean, pages 341--360.
+\newblock Springer, 2014.
+
+\bibitem{aliassing}
+National instruments.
+\newblock http://www.ni.com/white-paper/3000/en.
+
+\bibitem{lamptest}
+Ikea 702.880.22 led1336r4.
+\newblock http://lamptest.ru/review/ikea-70288022-led1336r4/.
+
+\bibitem{tvilight}
+TVI light.
+\newblock www.tvilight.com/citysense.
+
+\bibitem{indoor_VLC_no_LOS}
+Esmail M.A. and H.A.~Photon Fathallah.
+\newblock Indoor visible light communication without line of sight:
+  investigation and performance analysis.
+\newblock {\em Photonic Network Communications}, pages 159--166, October 2015.
+
+\bibitem{LuxMeter}
+Mastech.
+\newblock {\em MS8229, Digital multimeter operation manual}.
+
+\bibitem{Tile_Track}
+Jaakko~Maentuasta Miika~Valtonen and Jukka Vanhala.
+\newblock Tiletrack: Capacitive human tracking.
+\newblock {\em Pervasive Computing and Communications}, March 2009.
+
+\bibitem{WIFI_Tracking}
+Ashok~Agrawala Moustafa~Youssef, Matthew~Mah.
+\newblock Challenges: Device-free passive localization for wireless
+  environments.
+\newblock {\em MobiCom '07 Proceedings of the 13th annual ACM international
+  conference on Mobile computing and networking}, pages 222--229, January 2017.
+
+\bibitem{PIR_Tracking}
+L.~Benini P.~Zappi, E.~Farella.
+\newblock Enhancing the spatial resolution of presence detection in a pir based
+  wireless surveillance network.
+\newblock {\em Advanced Video and Signal Based Surveillance, 2007}, September
+  2007.
+
+\bibitem{Albedo}
+D.~; Akbari~H. Taha, H. ;~Sailor.
+\newblock High-albedo materials for reducing building cooling energy use.
+\newblock Technical report, Lawrence Berkeley Lab., CA (United States), January
+  1992.
+
+\bibitem{Human_Sensing_Using_VLC}
+Zhao Tian Andrew T.~Campbell Tianxing~Li, Chuankai~An and Xia Zhou.
+\newblock Human sensing using visible light communication.
+\newblock {\em MobiCom '15 Proceedings of the 21st Annual International
+  Conference on Mobile Computing and Networking}, pages 331--344, September
+  2015.
+
+\bibitem{Dark_Light_Rises}
+Kevin~Wright† Zhao~Tian and Xia Zhou.
+\newblock The darklight rises: Visible light communication in the dark.
+\newblock {\em MobiCom '16 Proceedings of the 22nd Annual International
+  Conference on Mobile Computing and Networking}, pages 2--15, October 2016.
+
+\bibitem{Dark_VLC}
+Kevin~Wright† Zhao~Tian and Xia Zhou.
+\newblock Lighting up the internet of things with darkvlc.
+\newblock {\em HotMobile '16 Proceedings of the 17th International Workshop on
+  Mobile Computing Systems and Applications}, pages 33--38, February 2016.
+
+\bibitem{lichthandbuch}
+Zumtobel.
+\newblock The lighting handbook.
+\newblock In {\em You concise reference book}. Zumtobel, Schweizer Strasse 30,
+  6851 Dornbirn, AUSTRIA, 5th edition, 2017.
+
+\end{thebibliography}

@@ -1,0 +1,50 @@
+\select@language {british}
+\contentsline {chapter}{Preface}{v}{chapter*.1}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Problem statement}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Contributions}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}Organization}{1}{section.1.3}
+\contentsline {chapter}{\numberline {2}Background}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Characteristics of a lights}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Units and measures of light}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Modelling a light}{3}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Modelling a reflection}{5}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}Dimming and its consequences}{6}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Types of dimming}{6}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Limits of dimming}{6}{subsection.2.2.2}
+\contentsline {chapter}{\numberline {3}Related Work}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Related projects and companies}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Visible light communication}{9}{section.3.2}
+\contentsline {chapter}{\numberline {4}Model}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}Model description}{11}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Adjustments}{11}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Calculation process}{12}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Verification}{12}{section.4.2}
+\contentsline {section}{\numberline {4.3}Modelling of the hallway}{13}{section.4.3}
+\contentsline {section}{\numberline {4.4}Modelling of the street}{14}{section.4.4}
+\contentsline {section}{\numberline {4.5}Results}{15}{section.4.5}
+\contentsline {section}{\numberline {4.6}Conclusions}{15}{section.4.6}
+\contentsline {chapter}{\numberline {5}Flash Analysis}{17}{chapter.5}
+\contentsline {section}{\numberline {5.1}Implementation}{17}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Flash generator}{17}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Reflection receiver}{17}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Analyser}{17}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}Flash characteristics}{17}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Data generation}{17}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Results and conclusion}{18}{subsection.5.2.2}
+\contentsline {chapter}{\numberline {6}Algorithm}{21}{chapter.6}
+\contentsline {subsection}{\numberline {6.0.1}Simulation of the signal}{21}{subsection.6.0.1}
+\contentsline {subsection}{\numberline {6.0.2}Removing high frequency components}{22}{subsection.6.0.2}
+\contentsline {subsection}{\numberline {6.0.3}Detection threshold}{26}{subsection.6.0.3}
+\contentsline {subsection}{\numberline {6.0.4}Noise reduction}{28}{subsection.6.0.4}
+\contentsline {subsection}{\numberline {6.0.5}Algorithm overview}{28}{subsection.6.0.5}
+\contentsline {chapter}{\numberline {7}System evaluation}{31}{chapter.7}
+\contentsline {section}{\numberline {7.1}Scale model}{31}{section.7.1}
+\contentsline {section}{\numberline {7.2}Hallway Test}{31}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}indoor}{31}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}outdoor}{31}{subsection.7.2.2}
+\contentsline {chapter}{\numberline {8}Conclusions and Future Work}{33}{chapter.8}
+\contentsline {section}{\numberline {8.1}Conclusions}{33}{section.8.1}
+\contentsline {section}{\numberline {8.2}Future Work}{33}{section.8.2}
+\contentsline {chapter}{\numberline {A}Code repository}{37}{appendix.A}
+\contentsline {chapter}{\numberline {B}Raw Model results}{39}{appendix.B}

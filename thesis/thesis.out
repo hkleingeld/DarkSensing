@@ -1,0 +1,49 @@
+\BOOKMARK [0][-]{chapter*.1}{Preface}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.1.1}{Problem statement}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Contributions}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.3}{Organization}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Characteristics of a lights}{chapter.2}% 7
+\BOOKMARK [2][-]{subsection.2.1.1}{Units and measures of light}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.2}{Modelling a light}{section.2.1}% 9
+\BOOKMARK [2][-]{subsection.2.1.3}{Modelling a reflection}{section.2.1}% 10
+\BOOKMARK [1][-]{section.2.2}{Dimming and its consequences}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.1}{Types of dimming}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.2}{Limits of dimming}{section.2.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 14
+\BOOKMARK [1][-]{section.3.1}{Related projects and companies}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{Visible light communication}{chapter.3}% 16
+\BOOKMARK [0][-]{chapter.4}{Model}{}% 17
+\BOOKMARK [1][-]{section.4.1}{Model description}{chapter.4}% 18
+\BOOKMARK [2][-]{subsection.4.1.1}{Adjustments}{section.4.1}% 19
+\BOOKMARK [2][-]{subsection.4.1.2}{Calculation process}{section.4.1}% 20
+\BOOKMARK [1][-]{section.4.2}{Verification}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.3}{Modelling of the hallway}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.4}{Modelling of the street}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.5}{Results}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.6}{Conclusions}{chapter.4}% 25
+\BOOKMARK [0][-]{chapter.5}{Flash Analysis}{}% 26
+\BOOKMARK [1][-]{section.5.1}{Implementation}{chapter.5}% 27
+\BOOKMARK [2][-]{subsection.5.1.1}{Flash generator}{section.5.1}% 28
+\BOOKMARK [2][-]{subsection.5.1.2}{Reflection receiver}{section.5.1}% 29
+\BOOKMARK [2][-]{subsection.5.1.3}{Analyser}{section.5.1}% 30
+\BOOKMARK [1][-]{section.5.2}{Flash characteristics}{chapter.5}% 31
+\BOOKMARK [2][-]{subsection.5.2.1}{Data generation}{section.5.2}% 32
+\BOOKMARK [2][-]{subsection.5.2.2}{Results and conclusion}{section.5.2}% 33
+\BOOKMARK [0][-]{chapter.6}{Algorithm}{}% 34
+\BOOKMARK [1][-]{subsection.6.0.1}{Simulation of the signal}{chapter.6}% 35
+\BOOKMARK [2][-]{subsection.6.0.2}{Removing high frequency components}{subsection.6.0.1}% 36
+\BOOKMARK [2][-]{subsection.6.0.3}{Detection threshold}{subsection.6.0.1}% 37
+\BOOKMARK [2][-]{subsection.6.0.4}{Noise reduction}{subsection.6.0.1}% 38
+\BOOKMARK [2][-]{subsection.6.0.5}{Algorithm overview}{subsection.6.0.1}% 39
+\BOOKMARK [0][-]{chapter.7}{System evaluation}{}% 40
+\BOOKMARK [1][-]{section.7.1}{Scale model}{chapter.7}% 41
+\BOOKMARK [1][-]{section.7.2}{Hallway Test}{chapter.7}% 42
+\BOOKMARK [2][-]{subsection.7.2.1}{indoor}{section.7.2}% 43
+\BOOKMARK [2][-]{subsection.7.2.2}{outdoor}{section.7.2}% 44
+\BOOKMARK [0][-]{chapter.8}{Conclusions and Future Work}{}% 45
+\BOOKMARK [1][-]{section.8.1}{Conclusions}{chapter.8}% 46
+\BOOKMARK [1][-]{section.8.2}{Future Work}{chapter.8}% 47
+\BOOKMARK [0][-]{appendix.A}{Code repository}{}% 48
+\BOOKMARK [0][-]{appendix.B}{Raw Model results}{}% 49

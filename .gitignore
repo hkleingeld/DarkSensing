@@ -7,3 +7,7 @@
 /DarkSenseAnalyzer/Hight=53cm
 /DarkSenseAnalyzer/Debug
 /DarkSenseRunning/Debug
+/thesis/Papers/*.pdf
+/thesis/Papers/*.htm
+/thesis/chapters/*.aux
+/thesis/chapters/*.log
