@@ -1,0 +1,1 @@
+This is source code common among the c/c++ projects. (analysers/gatherers/etc).

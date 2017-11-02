@@ -1,0 +1,1 @@
+This folder contains different algorihm analyser scripts. The data folder contains all test sets

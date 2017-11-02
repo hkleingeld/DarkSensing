@@ -1,0 +1,1 @@
+This folder contains code to generate several analyser programs used by matlab. If this project is compiled it will create several versions of the program (each with a slightly different function) and move them to the root/analyzer directory.

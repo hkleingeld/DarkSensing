@@ -1,0 +1,1 @@
+This folder contians the implementation of the capture program used to capture  test data when humans are passing by.
