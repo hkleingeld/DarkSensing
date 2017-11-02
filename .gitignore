@@ -11,3 +11,6 @@
 /thesis/Papers/*.htm
 /thesis/chapters/*.aux
 /thesis/chapters/*.log
+/thesis/thesis.toc
+/thesis/thesis.log
+/thesis/thesis.synctex.gz

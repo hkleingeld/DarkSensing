@@ -184,12 +184,12 @@ int main(int argc, char *argv[]){
 #endif
 	}
 	else{
-		n = 7;
-		d = 300;
+		n = 1;
+		d = 1;
 		m = 800;
 		z = 1;
 		T = 0.1;
-		FromFile = 3;
+		FromFile = 13;
 		ToFile = 13;
 		NrOFiles = ToFile - FromFile + 1;
 
