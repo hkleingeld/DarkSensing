@@ -23,30 +23,31 @@
 \BOOKMARK [1][-]{section.4.4}{Modelling of the street}{chapter.4}% 23
 \BOOKMARK [1][-]{section.4.5}{Results}{chapter.4}% 24
 \BOOKMARK [1][-]{section.4.6}{Conclusions}{chapter.4}% 25
-\BOOKMARK [0][-]{chapter.5}{Flash Analysis}{}% 26
+\BOOKMARK [0][-]{chapter.5}{Platform}{}% 26
 \BOOKMARK [1][-]{section.5.1}{Implementation}{chapter.5}% 27
 \BOOKMARK [2][-]{subsection.5.1.1}{Flash generator}{section.5.1}% 28
 \BOOKMARK [2][-]{subsection.5.1.2}{Reflection receiver}{section.5.1}% 29
 \BOOKMARK [2][-]{subsection.5.1.3}{Analyser}{section.5.1}% 30
-\BOOKMARK [1][-]{section.5.2}{Flash characteristics}{chapter.5}% 31
-\BOOKMARK [2][-]{subsection.5.2.1}{Data generation}{section.5.2}% 32
-\BOOKMARK [2][-]{subsection.5.2.2}{Results and conclusion}{section.5.2}% 33
-\BOOKMARK [0][-]{chapter.6}{Algorithm}{}% 34
-\BOOKMARK [1][-]{subsection.6.0.1}{Simulation of the signal}{chapter.6}% 35
-\BOOKMARK [2][-]{subsection.6.0.2}{Removing high frequency components}{subsection.6.0.1}% 36
-\BOOKMARK [2][-]{subsection.6.0.3}{Detection threshold}{subsection.6.0.1}% 37
-\BOOKMARK [2][-]{subsection.6.0.4}{Noise reduction}{subsection.6.0.1}% 38
-\BOOKMARK [2][-]{subsection.6.0.5}{Algorithm overview}{subsection.6.0.1}% 39
-\BOOKMARK [0][-]{chapter.7}{System evaluation}{}% 40
-\BOOKMARK [1][-]{section.7.1}{Scale model}{chapter.7}% 41
-\BOOKMARK [1][-]{section.7.2}{Hallway Test}{chapter.7}% 42
-\BOOKMARK [2][-]{subsection.7.2.1}{indoor}{section.7.2}% 43
-\BOOKMARK [2][-]{subsection.7.2.2}{outdoor}{section.7.2}% 44
-\BOOKMARK [0][-]{chapter.8}{Conclusions and Future Work}{}% 45
-\BOOKMARK [1][-]{section.8.1}{Conclusions}{chapter.8}% 46
-\BOOKMARK [1][-]{section.8.2}{Future Work}{chapter.8}% 47
-\BOOKMARK [0][-]{appendix.A}{Code repository}{}% 48
-\BOOKMARK [0][-]{appendix.B}{Raw Model results}{}% 49
-\BOOKMARK [0][-]{appendix.C}{Flash analyser schematics}{}% 50
-\BOOKMARK [1][-]{section.C.1}{LED driver}{appendix.C}% 51
-\BOOKMARK [1][-]{section.C.2}{Interfaces between components}{appendix.C}% 52
+\BOOKMARK [0][-]{chapter.6}{Flash Analysis}{}% 31
+\BOOKMARK [1][-]{section.6.1}{Flash characteristics}{chapter.6}% 32
+\BOOKMARK [2][-]{subsection.6.1.1}{Data generation}{section.6.1}% 33
+\BOOKMARK [2][-]{subsection.6.1.2}{Results and conclusion}{section.6.1}% 34
+\BOOKMARK [0][-]{chapter.7}{Analyser}{}% 35
+\BOOKMARK [1][-]{subsection.7.0.1}{Simulation of the signal}{chapter.7}% 36
+\BOOKMARK [2][-]{subsection.7.0.2}{Removing high frequency components}{subsection.7.0.1}% 37
+\BOOKMARK [2][-]{subsection.7.0.3}{Detection threshold}{subsection.7.0.1}% 38
+\BOOKMARK [2][-]{subsection.7.0.4}{Noise reduction}{subsection.7.0.1}% 39
+\BOOKMARK [2][-]{subsection.7.0.5}{Algorithm overview}{subsection.7.0.1}% 40
+\BOOKMARK [0][-]{chapter.8}{System evaluation}{}% 41
+\BOOKMARK [1][-]{section.8.1}{Scale model}{chapter.8}% 42
+\BOOKMARK [1][-]{section.8.2}{Hallway Test}{chapter.8}% 43
+\BOOKMARK [2][-]{subsection.8.2.1}{indoor}{section.8.2}% 44
+\BOOKMARK [2][-]{subsection.8.2.2}{outdoor}{section.8.2}% 45
+\BOOKMARK [0][-]{chapter.9}{Conclusions and Future Work}{}% 46
+\BOOKMARK [1][-]{section.9.1}{Conclusions}{chapter.9}% 47
+\BOOKMARK [1][-]{section.9.2}{Future Work}{chapter.9}% 48
+\BOOKMARK [0][-]{appendix.A}{Code repository}{}% 49
+\BOOKMARK [0][-]{appendix.B}{Raw Model results}{}% 50
+\BOOKMARK [0][-]{appendix.C}{Flash analyser schematics}{}% 51
+\BOOKMARK [1][-]{section.C.1}{LED driver}{appendix.C}% 52
+\BOOKMARK [1][-]{section.C.2}{Interfaces between components}{appendix.C}% 53
