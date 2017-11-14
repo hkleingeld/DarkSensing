@@ -33,13 +33,16 @@ uint16_t Maximum(uint16_t size, uint16_t * array){
 	return(max);
 }
 
-uint16_t Average(uint16_t size, uint16_t * array){
-	uint32_t sum = 0;
-	
-	for(int i = 0; i < size ; i++){
-		sum += array[i];
+uint16_t Sum(uint16_t size, uint16_t * array){
+	uint16_t retval = 0;
+	for(uint8_t i = 0; i < size; i++){
+		retval += array[i];
 	}
-	
+	return retval;
+}
+
+uint16_t Average(uint16_t size, uint16_t * array){
+	uint32_t sum = Sum(size, array);
 	return(sum/size);
 }
 

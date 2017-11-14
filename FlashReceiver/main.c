@@ -106,7 +106,7 @@ int main(void)
 	
 	stdDev * lightMaxStdDev;
 
-	uint16_t lastDeviation = 1000; /*std of 100, is way too much of course :)*/
+	uint16_t lastDeviation = 1000; /*std of 1000, is way too much of course :)*/
 	/************************************************************************/
 	//darkMaxStdDev = StdDev_Init();
 	lightMaxStdDev = StdDev_Init();
@@ -174,13 +174,17 @@ int main(void)
 			uart_write('\n');
 		}
 		else{ 
+			uint16_t Unfiltered_max = Maximum(11-6, &samples[6]);
+			uint16_t sum = Sum(40, &samples[6]);
 			filter100_IRR(&samples[0]);
 			
 			uint16_t max = Maximum(NR_OF_SAMPLES, &samples[0]);
 
 			uart_write_string(itoa(max,itoabuffer,10));
 			uart_write(',');
-			uart_write_string(itoa(117,itoabuffer,10));
+			uart_write_string(itoa(Unfiltered_max,itoabuffer,10));
+			uart_write(',');
+			uart_write_string(itoa(sum,itoabuffer,10));
 			uart_write('\n');
 		}
 

@@ -29,7 +29,6 @@ float c5 = 0.032446209457407477;
 
 float W0 = 2174; /*default W0 value for the dark room*/
 
-#define MAX_FP_VAL 2047
 #define numofsamples 50
 void filter100_IRR(uint16_t * X){
 	uint16_t * Y = X;
