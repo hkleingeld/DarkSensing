@@ -23,7 +23,7 @@ Albedo is a property of an object representing the percentage of energy which is
 \Gamma = \int_{380nm}^{780nm} \Phi_e p(\lambda) d\lambda \to \Gamma = \Phi_{lum} \alpha
 \end{equation}
 
-The final adjustment is the amount of reflections we calculate. In reality a light ray can be reflected an infinite amount of times of several different surfaces before returning back to the sensor. In the model however we only calculated one bounce (from the light to an object and back) for two reasons. The first reason is that the computational process would become much more complicated. The second reason is that the first reflection provides approximately 80\% of the signal where all other reflections only adds 20\% \cite{indoor_VLC_no_LOS}.
+The final adjustment is the amount of reflections we calculate. In reality a light ray can be reflected an infinite amount of times of several different surfaces before returning back to the sensor. In the model however we only calculated one bounce (from the light to an object and back) for two reasons. The reason for this is that the first reflection provides approximately 80\% of the signal where all other reflections only make up 20\% of the total power\cite{indoor_VLC_no_LOS}. This increase in accuracy
 
 \begin{equation}
 \label{eq:Ehor_new}
@@ -45,9 +45,24 @@ The second step is to calculate how much light reflected from all floors and wal
 
 \section{Verification}
 \label{sec:verification}
-The calculation method was verified using a scale model featuring a LED\cite{lamptest}, a paper box and a light meter\cite{LuxMeter}. The first step of verifying the model is check if the LED is modelled properly. This was done by hanging the LED at 100cm above the floor and measuring the horizontal illuminance ($E_hor$) at the floor to see if the measured irradiation pattern of the LED matches the theoretical pattern produced by equation \ref{eq:I(phi)}. 
+The calculation method was verified using a scale model featuring a LED\cite{lamptest}, a paper box and a light meter\cite{LuxMeter}. The first step of verifying the model is check if the LED is modelled properly. This was done by hanging the LED at 100cm above the floor and measuring the horizontal illuminance ($E_hor$) at the floor to see if the measured irradiation pattern of the LED matches the theoretical pattern produced by equation \ref{eq:I(phi)}. Simulations in Appendix \ref{app_repository} that the LED in the test set-up was producing more light than in the specification.
 
-Once the light 
+The second step is the verification of the interpretation of the Phong model. This was done with the test set-up shown in figure \ref{fig:VerificationSetup}. By moving a paper box across the flool in steps of 5cm and measuring the reflection at each step we obtain the red line in figure \ref{fig:verf_floor}.
+
+\begin{figure}[]
+	\centering
+	\includegraphics[width=\textwidth]{pics/Verification_Situation.png}
+	\caption{Visualisation of the model verification set-up.}
+	\label{fig:VerificationSetup}
+\end{figure}
+
+\begin{figure}
+	\centering     %%% not \center
+	\label{fig:VerificationResults}
+	\subfigure[]{\label{fig:verf_paper}\includegraphics[width=60mm]{pics/ModelVerificationResults_paper.png}}
+	\subfigure[]{\label{fig:verf_floor}\includegraphics[width=60mm]{pics/ModelVerificationResults_floor.png}}
+	\caption{Both figures show that the model provides a reasonable approximation of the reality. Note that the albedo of paper was taken from \cite{Albedo} and the albedo of the floor was estimated with these measurements.}
+\end{figure}
 
 \section{Modelling of the hallway}
 \label{sec:moddelingofthehallway}
@@ -69,11 +84,9 @@ The street model is based on a real street near the TU delft. It has two lanes f
 
 Industry standards state that a street with side walk should be illuminated with at least $E_{mean} > 3lx$ and a light uniformity of $U_o > 0.2$ \cite{HandboekBestaandeBouw}.These lighting requirements can be achieved using 700lx luminaires with a halfpower angle of $60^{\circ}$ placed every 15 meter in between the road and side walk. This set-up is visualized in figure \ref{fig:pattern_street}. Calculations showing that the industry standards are met can be found in Appendix \ref{app_repository}.
 
-In this model two different objects will be modelled representing humans (walking on the side walk) and cars (driving in the two driving lanes). The humans will be modelled in the same way as in section \ref{sec:moddelingofthehallway}. The car will be modelled as a cuboid with the dimensions of an Opel Corsa (4m x 1,7m x 1,5m), a commonly seen small car. The object was modelled with diffuse reflection. This is because no reliable sources describing the specular parameters ($r_d$ and $m$) of cars could be found.
+In this model two different objects will be modelled representing humans (walking on the side walk) and cars (driving in the two driving lanes). The humans will be modelled in the same way as in section \ref{sec:moddelingofthehallway}. The car will be modelled as a cuboid with the dimensions of an Opel Corsa (4m x 1,7m x 1,5m), a commonly seen small car. The object was modelled with diffuse reflection, because no reliable sources describing the specular parameters ($r_d$ and $m$) of cars could be found.
 
-Lacking the specular deflection for this specific model should not influence the result significantly. This is because no part of the car will be moved directly underneath the light and therefore no light of the spread reflecting will ever reach the light sensor. This is visualized in figure \ref{fig:streetnospecular}.
-
-TODO: Add albedo
+Lacking the specular deflection for this specific model should not influence the results significantly. This is because no part of the car will be moved directly underneath the light and therefore no significant amount of light of the spread reflection should ever reach the light sensor. This is visualized in figure \ref{fig:streetnospecular}. This is also the reason why cars are simulated with lower albedo than humans.
 
 \begin{figure}
 	\centering     %%% not \center
@@ -85,6 +98,12 @@ TODO: Add albedo
 \section{Results}
 Several measurements have been graphed in Figure X. Raw results can be viewed in appendix \ref{app:RawModelResults}.
 
+%voeg plaatjes toe voor conlusie
+
 \section{Conclusions}
+
+Influence of albedo
+
+approximate the minimum and maximum signal frequency.
 
 

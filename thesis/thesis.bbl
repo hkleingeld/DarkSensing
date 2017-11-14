@@ -5,10 +5,25 @@ Marilyne Andersen.
 \newblock Types of reflection.
 \newblock https://www.flickr.com/photos/mitopencourseware/4815499473/.
 
+\bibitem{Near_Field_VLS}
+Jialiang~Zhang Chi~Zhang, Joshua~Tabor and Xinyu Zhang.
+\newblock Extending mobile interaction through near-field visible light
+  sensing.
+\newblock {\em MobiCom '15 Proceedings of the 21st Annual International
+  Conference on Mobile Computing and Networking}, pages 345--357, September
+  2015.
+
 \bibitem{HandboekBestaandeBouw}
 Lilian~Tieman Chris van~der Nat, Hans~Schelvis.
 \newblock {\em Bestaande bouw, Handboek Politiekeurmerk Veilig Wonen}.
 \newblock Centrum voor Criminaliteitspreventie en Veiligheid, december 2015.
+
+\bibitem{LocaLight}
+Thiemo Voigt Carlos Perez-Penichet Elena Di~Lascio, Ambuj~Varshney.
+\newblock Localight - a battery-free passive localization system using visible
+  light.
+\newblock {\em IPSN '16 Proceedings of the 15th International Conference on
+  Information Processing in Sensor Networks}, (60), April 2016.
 
 \bibitem{Confidence_interval}
 H.P. Lopuhaä L.E.~Meester F.M.~Dekking, C.~Kraaikamp.
@@ -43,6 +58,13 @@ Jaakko~Maentuasta Miika~Valtonen and Jukka Vanhala.
 \newblock Tiletrack: Capacitive human tracking.
 \newblock {\em Pervasive Computing and Communications}, March 2009.
 
+\bibitem{Ceiling_PD}
+Siddharth Rupavatharam Minitha Jawahar Marco Gruteser Richard~Howard
+  Mohamed~Ibrahim, Viet~Nguyen.
+\newblock Visible light based activity sensing using ceiling photosensors.
+\newblock {\em VLCS '16 Proceedings of the 3rd Workshop on Visible Light
+  Communication Systems}, pages 43--48, October 2016.
+
 \bibitem{WIFI_Tracking}
 Ashok~Agrawala Moustafa~Youssef, Matthew~Mah.
 \newblock Challenges: Device-free passive localization for wireless
@@ -69,6 +91,11 @@ Zhao Tian Andrew T.~Campbell Tianxing~Li, Chuankai~An and Xia Zhou.
 \newblock {\em MobiCom '15 Proceedings of the 21st Annual International
   Conference on Mobile Computing and Networking}, pages 331--344, September
   2015.
+
+\bibitem{JakesWork}
+Junwei Zhang.
+\newblock Passive localization with visible light.
+\newblock {MSc thesis}, TU Delft, 9 2016.
 
 \bibitem{Dark_Light_Rises}
 Kevin~Wright† Zhao~Tian and Xia Zhou.

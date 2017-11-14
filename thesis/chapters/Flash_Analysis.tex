@@ -1,10 +1,15 @@
 \chapter{Flash Analysis}
 \label{chp:Flash_Analysis}
-explain goals (use the device to capture flashes, extract features and send them to the analyser)
+The goal of the flash analyser, as explained earlier, is to capture the flash and extract useful features. 
+Before we are able to analyse flashes we have to find the ideal flash-generator settings. For this reason the first section of this chapter focuses on finding the ideal flash settings. The second section will focus on how and what kind of features to extract from the flash. The final section will show the variance still left in the signal.
 
 
-\section{Flash characteristics}
-\label{sec:Flash_characteristics}
+
+\section{Flash generator settings}
+\label{sec:Flash_generator}
+The flash generator has several parameters which can be changed: T (period), t-on (on time of the LED) and I (brightness of the LED).
+
+In order to find the ideal flash settings we use the test set-up shown in figure \ref{fig:Flashcapturing}. D in the figure represents the distance between the device and the reflecting surface. 
 
 \begin{figure}
 	\centering     %%% not \center
@@ -13,6 +18,17 @@ explain goals (use the device to capture flashes, extract features and send them
 	\subfigure[Test setup in dark environment]{\label{fig:b}\includegraphics[width=60mm]{pics/Flashcapture_dark.png}}
 	\caption{Test setup used to capture flashes in the darkroom.}
 \end{figure}
+
+% figure of flashes with different distances (0.8m, 1m, 1.2m and 1.4m)
+% figure of flashes with different T-on @1m
+% figure of consecutive flashes with different filters
+
+
+\section{Feature extraction}
+
+\section{Overview}
+
+
 
 show several captured flashes. and explain what we see.
 explain features extractable from the flash
@@ -24,7 +40,7 @@ explain features extractable from the flash
 show real turn on delay time (or in our case, the time we are able to sense the light), rise-time, and turn-off-delay.
 Define turn on time.
 
-\begin{figure}[!h]
+\begin{figure}[]
 	\includegraphics[width=\textwidth]{pics/66KhzFilter_placeholder.png}
 	\caption{The data captured by the system before and after filtering. @=PLACEHOLDER FIGURE!@.}
 	\label{fig:66KhzFilter}
