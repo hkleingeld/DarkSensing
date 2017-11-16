@@ -14,7 +14,7 @@
 uint16_t Minimum(uint16_t size, uint16_t * array);
 uint16_t Maximum(uint16_t size, uint16_t * array);
 uint16_t Average(uint16_t size, uint16_t * array);
-uint16_t Sum(uint16_t size, uint16_t * array);
+uint64_t Sum(uint16_t size, uint16_t * array);
 
 uint16_t AbsoluteDifference(uint16_t size, uint16_t * array1, uint16_t * array2);
 
