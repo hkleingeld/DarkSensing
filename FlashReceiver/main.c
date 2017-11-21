@@ -176,8 +176,14 @@ int main(void)
 		else{ 
 			uint16_t Unfiltered_max = Maximum(40, &samples[0]);
 			uint64_t sum = Sum(40, &samples[0]);
-			filter100_IRR(&samples[0]);
 			
+			if(adc == 2){
+				filter75_IRR(&samples[0]);
+			}
+			else{
+				filter10_IRR(&samples[0]);
+			}
+
 			uint16_t max = Maximum(NR_OF_SAMPLES, &samples[0]);
 			uint64_t filteredSum = Sum(40, &samples[0]);
 			

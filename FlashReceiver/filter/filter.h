@@ -8,7 +8,8 @@
 #ifndef _H_GUARD_FILTER_
 #define _H_GUARD_FILTER_
 
-void filter100_IRR(uint16_t * X);
+void filter10_IRR(uint16_t * X);
+void filter75_IRR(uint16_t * X);
 void filterFIR(uint16_t * X);
 void filter_CalculateStartupValues(uint16_t * X);
 
