@@ -5,6 +5,10 @@ Marilyne Andersen.
 \newblock Types of reflection.
 \newblock https://www.flickr.com/photos/mitopencourseware/4815499473/.
 
+\bibitem{ArduinoUno}
+Arduino.cc.
+\newblock https://store.arduino.cc/arduino-uno-rev3.
+
 \bibitem{Near_Field_VLS}
 Jialiang~Zhang Chi~Zhang, Joshua~Tabor and Xinyu Zhang.
 \newblock Extending mobile interaction through near-field visible light
@@ -31,9 +35,28 @@ H.P. Lopuhaä L.E.~Meester F.M.~Dekking, C.~Kraaikamp.
   Confidence intervals for the mean, pages 341--360.
 \newblock Springer, 2014.
 
+\bibitem{Albedo}
+H.~Akbari H.~Taha, D.~Sailor.
+\newblock High-albedo materials for reducing building cooling energy use.
+\newblock Technical report, Lawrence Berkeley Lab., CA (United States), January
+  1992.
+
+\bibitem{LED_on}
+H.~Halbritter.
+\newblock High-speed switching of ir-leds (part i) - background and datasheet
+  definition.
+\newblock Technical report, OSRAM, Opto Semiconductors, March 2014.
+
 \bibitem{aliassing}
 National instruments.
 \newblock http://www.ni.com/white-paper/3000/en.
+
+\bibitem{Shine}
+L.~Klaver and M.A. Zuniga.
+\newblock Shine: A step towards distributed multi-hop visible light
+  communication.
+\newblock {\em 12th IEEE International Conference on Mobile Ad hoc and Sensor
+  Systems (MASS)}, pages 235 -- 243, October note = 2015.
 
 \bibitem{lamptest}
 Ikea 702.880.22 led1336r4.
@@ -78,12 +101,6 @@ L.~Benini P.~Zappi, E.~Farella.
   wireless surveillance network.
 \newblock {\em Advanced Video and Signal Based Surveillance, 2007}, September
   2007.
-
-\bibitem{Albedo}
-D.~; Akbari~H. Taha, H. ;~Sailor.
-\newblock High-albedo materials for reducing building cooling energy use.
-\newblock Technical report, Lawrence Berkeley Lab., CA (United States), January
-  1992.
 
 \bibitem{Human_Sensing_Using_VLC}
 Zhao Tian Andrew T.~Campbell Tianxing~Li, Chuankai~An and Xia Zhou.

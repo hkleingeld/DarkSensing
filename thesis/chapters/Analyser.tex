@@ -3,6 +3,8 @@
 The flash analyser now outputs values at 125Hz, which is a mixture of various lights and noise. The next step is to create an activity detection algorithm to convert the incoming samples in a logical value: Activity detected or no activity detected. This chapter is separated in three parts. The first part shows what signals are received by the photodiode. The second part explains what methods considered to remove unwanted signals from the signal. The final part of this chapter shows all considerations for the threshold algorithm.
 
 \section{Received signals}
+In an ideal world, the system 
+
 
 \begin{equation}
 \label{eq:Pd_light}
@@ -82,11 +84,11 @@ The only part of equation \ref{eq:PD} that holds information we can use is $I_{L
 \label{subsec:removeing_AC}
 Filtering higher frequencies from a signal is a common challenge in signal processing. The signals we try to isolate ($I_{L}\alpha$, 0.25 to 2Hz) are far removed from the frequencies we are trying to suppress ($I_{Eac}$ at 100Hz and $N_{50Hz}$ at 50Hz). The most common method of doing this is by using digital filters. As only the lower frequencies are interesting, a low-pass filter seems to be ideal in this case. There is however one problem. $2 * I_{Eac}$ Is above our sampling frequency, and thus aliasing will occur. In this example it will appear as a 25Hz signal. This signal poses no real issue, as its still an order of magnitude away from the frequency of $ I_{L} \alpha$, and it can still be filtered with a steeper filter. This however, is not always the case in the real world. Any light manufacturer can create lights running at any frequency, and thus there is no guarantee that there won't be a light out there in the world, that can mess the algorithm up. In all other cases this filter probably works fine. Figure \ref{fig:FilterVSAllias} shows how a low-pass filter would remove the signals from the data.
 
-\begin{figure}
-	\includegraphics[width=\textwidth]{pics/FirFilter_vs_allias.png}
-	\caption{A low-pass filter, filtering the $I_{Eac}$ and $N_{50Hz}$ signals.}
-	\label{fig:FilterVSAllias}
-\end{figure}
+%\begin{figure}
+%	\includegraphics[width=\textwidth]{pics/FirFilter_vs_allias.png}
+%	\caption{A low-pass filter, filtering the $I_{Eac}$ and $N_{50Hz}$ signals.}
+%	\label{fig:FilterVSAllias}
+%\end{figure}
 
 A completely other method of removing these high frequency components is the "$PD_{dark}$" method. This method uses the fact that the sensor set-up can do more than just sampling when the light ($I_{L}$) is turned on. It's also possible to take samples when the light is turned off. The components in such a sample are shown in equation \ref{eq:Pd_dark}. If this sample is obtained a short time away from the original $PD$ then the 50Hz and 100Hz values are roughly the same. Therefore subtracting $PD_{dark}$ from $PD$ gives the equation \ref{eq:Pd_light_dark}, resulting in a signal where $I_{Eac}$, $I_{Edc}$ and $N_{50Hz}$ have practically disappeared.
 
