@@ -25,7 +25,10 @@ enum states {IDLE, START, DETECTING, FINISHING, RESET};
 typedef struct Measurement{
     uint16_t number;
     uint16_t StartDetecting;
-    uint16_t Samples[5000];
+    uint64_t Max[5000];
+    uint64_t Filtered[5000];
+    uint64_t Sum[5000];
+    uint64_t FilteredSum[5000];
     Measurement * next;
 }Measurement;
 
@@ -50,8 +53,11 @@ void SaveMeasurement(Measurement * node){
 	fiets << node->StartDetecting << "," << itoa(5000,itoabuffer,10) << "\n";
 	printf("saving ...\n");
 	uint16_t i = 0;
-	while(node->Samples[i] != 0){
-		fiets << node->Samples[i] << "\n";
+	while(node->Max[i] != 0){
+		fiets << node->Max[i] << ",";
+		fiets << node->Filtered[i] << ",";
+		fiets << node->Sum[i] << ",";
+		fiets << node->FilteredSum[i] << "\n";
 		i++;
 	}
 	printf("done ...\n");
@@ -103,16 +109,16 @@ void GoToXY(int column, int line)
     }
 }
 
-uint8_t ShineReceiveBuffer[20] = {0};
+uint8_t ShineReceiveBuffer[100] = {0};
 
 HANDLE Arduino;
 HANDLE Shine;
 ofstream myfile;
 
 
-uint8_t BlinkCommand[7] = 		{0xC0, 0x03, 0x20, 0x00, 0x0E, 0x01, 0xC0}; //high% dc
-uint8_t BlinkCommandDetect[7] = {0xC0, 0x03, 0x20, 0x00, 0x0E, 0x01, 0xC0};  //2% dc
-uint8_t sendListenCommand[1] =  {0x02};
+uint8_t BlinkCommand[7] = 		{0xC0, 0x03, 0x20, 0x00, 0x14, 0x00, 0xC0}; //high% dc
+uint8_t BlinkCommandDetect[7] = {0xC0, 0x03, 0x20, 0x00, 0x14, 0x00, 0xC0};  //2% dc
+uint8_t sendListenCommand[1] =  {0x03};
 
 void sendBlinkCommand(uint8_t * msg){
 	int BytesSend = 0;
@@ -185,11 +191,16 @@ int main(void) {
 
 		if(ShineReceiveBuffer[BytesRead-1] == '\n'){ //Full number in buffer?
 
+			uint64_t newSample[4] = {0};
+			void * index = (void *) ShineReceiveBuffer;
+
+			for(int i = 0; i<4; i++){
+				newSample[i] = atoi((char *)index);
+				index = memchr(index,',',100) + 1;
+			}
+
 			BytesRead = 0;
-
-			uint16_t newSample = atoi((char *) ShineReceiveBuffer);
-
-			if(newSample < 100){
+			if(newSample[0] < 100){
 				error_cnt++;
 				continue;
 			}
@@ -204,12 +215,15 @@ int main(void) {
 				}
 				break;
 			case START:
-				NewMeasure->Samples[SampleInMeasure] = newSample;
+				NewMeasure->Max[SampleInMeasure] = newSample[0];
+				NewMeasure->Filtered[SampleInMeasure] = newSample[1];
+				NewMeasure->Sum[SampleInMeasure] = newSample[2];
+				NewMeasure->FilteredSum[SampleInMeasure] = newSample[3];
 				SampleInMeasure++;
 
 				if(SampleInMeasure == 2000){
 					printf(" - 2000 samples!");
-					popen("vlc.exe --stop-time 5 \"C:\\Users\\Hajo\\workspace\\SubJava\\Nuclear alarm siren sound effect NUKE.mp3\" vlc://quit", "r");
+//					popen("vlc.exe --stop-time 5 \"C:\\Users\\Hajo\\workspace\\SubJava\\Nuclear alarm siren sound effect NUKE.mp3\" vlc://quit", "r");
 				}
 
 				if(GetAsyncKeyState(VK_RCONTROL)){
@@ -221,7 +235,11 @@ int main(void) {
 				}
 				break;
 			case DETECTING:
-				NewMeasure->Samples[SampleInMeasure] = newSample;
+				NewMeasure->Max[SampleInMeasure] = newSample[0];
+				NewMeasure->Filtered[SampleInMeasure] = newSample[1];
+				NewMeasure->Sum[SampleInMeasure] = newSample[2];
+				NewMeasure->FilteredSum[SampleInMeasure] = newSample[3];
+
 				SampleInMeasure++;
 
 				if(!GetAsyncKeyState(VK_RCONTROL)){
@@ -232,7 +250,10 @@ int main(void) {
 			case FINISHING:
 				printf(" - Done\n");
 
-				NewMeasure->Samples[SampleInMeasure] = newSample;
+				NewMeasure->Max[SampleInMeasure] = newSample[0];
+				NewMeasure->Filtered[SampleInMeasure] = newSample[1];
+				NewMeasure->Sum[SampleInMeasure] = newSample[2];
+				NewMeasure->FilteredSum[SampleInMeasure] = newSample[3];
 
 				PrevMeasure = NewMeasure;
 				SampleInMeasure = 0;

@@ -174,27 +174,27 @@ int main(void)
 			uart_write('\n');
 		}
 		else{ 
-			uint16_t Unfiltered_max = Maximum(40, &samples[0]);
-			uint64_t sum = Sum(40, &samples[0]);
+			uint16_t Unfiltered_max = Maximum(NR_OF_SAMPLES, &samples[0]);
+			uint64_t sum = Sum(NR_OF_SAMPLES, &samples[0]);
 			
-			if(adc == 2){
-				filter75_IRR(&samples[0]);
+			if(adc == 1){
+				filter10_IRR(&samples[0]);
 			}
 			else{
-				filter10_IRR(&samples[0]);
+				filter5_IRR(&samples[0]);
 			}
 
 			uint16_t max = Maximum(NR_OF_SAMPLES, &samples[0]);
-			uint64_t filteredSum = Sum(40, &samples[0]);
+			uint64_t filteredSum = Sum(NR_OF_SAMPLES, &samples[0]);
 			
 			uart_write_string(itoa(max,itoabuffer,10));
 			uart_write(',');
 			uart_write_string(itoa(Unfiltered_max,itoabuffer,10));
 			uart_write(',');
 			uart_write_string(ltoa(sum,itoabuffer,10));
-			uart_write('\n');
-			uart_write_string(ltoa(filteredSum,itoabuffer,10));
-			uart_write('\n');
+			uart_write(',');
+ 			uart_write_string(ltoa(filteredSum,itoabuffer,10));
+ 			uart_write('\n');
 		}
 
 		while(UCSR0B & (1 << UDRIE0)); /*wait until  data ready interrupt is turned off (aka, we are done sending data)*/

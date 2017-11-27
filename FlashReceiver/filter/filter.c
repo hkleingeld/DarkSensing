@@ -51,6 +51,35 @@ void filter75_IRR(uint16_t * X){
 	Y[numofsamples-1] = Y[numofsamples-2];
 }
 
+void filter5_IRR(uint16_t * X){
+	/*filter coefficients determined by MATLAB (1st ORDER IRR @250Khz with -3DB @10Khz)*/
+	float a1 = -1.7891;
+	float a2 = 0.8093;
+	float b0 = 0.0051;
+	float b1 = 0.0101;
+	float b2 = 0.0051;
+	
+	uint16_t * Y = X;
+	float W[numofsamples] = {0};
+	//preset first value of W, this should improve settling time.
+	W[0] = W0;
+	W[1] = W0;
+	float Xn;
+	uint16_t Yn;
+	/*first order IRR filter. Coefficients are global*/
+	for(uint16_t n = 2; n < numofsamples; n++){
+		Xn = (float) X[n];
+		W[n] = (Xn - a1 * W[n-1] - a2 * W[n-2]);
+		Yn = (uint16_t) (b0 * W[n] + b1* W[n-1] + b2*W[n-2]); //as b0 == b1, this stage was simplefied
+		Y[n-2] = Yn;
+		/*note, this overwrites X[n-2], and can no longer be used*/
+	}
+
+	/* Stubbing final Y with previous value to keep an array of 100 values.*/
+	Y[numofsamples-2] = Y[numofsamples-3];
+	Y[numofsamples-1] = Y[numofsamples-2];
+}
+
 void filter10_IRR(uint16_t * X){
 	/*filter coefficients determined by MATLAB (1st ORDER IRR @250Khz with -3DB @10Khz)*/
 	float a1 = -1.8227;

@@ -10,6 +10,7 @@
 
 void filter10_IRR(uint16_t * X);
 void filter75_IRR(uint16_t * X);
+void filter5_IRR(uint16_t * X);
 void filterFIR(uint16_t * X);
 void filter_CalculateStartupValues(uint16_t * X);
 
