@@ -30,11 +30,11 @@ DutyCycle=\frac{T_{on}}{T} * 100\%
 %\end{figure}
 
 \subsection{Reflection receiver}
-The job of the receiver is to sample values while the light is being turned on and off, to then analyse the full flash and extract it's features. The receiver should capture flashes as precise and consistent as possible. For this reason, the receiver receives a sync signal from the flash generator, so it can start sampling at exactly the same moment every time relative to the start of the flash. 
+The job of the receiver is to sample values while the light is being turned on and off, to then analyse the full reflected flash and extract a feature which properly represents the environment. The receiver therefore should capture flashes as precise and consistent as possible. For this reason, the receiver receives a sync signal from the flash generator, so it can start sampling at exactly the same moment every time relative to the start of the flash. 
 
-The receiver should continue sampling until the light has completely turned off. once done, the device should do one of the following things, depending on the mode of the analyser:
+The receiver should continue sampling for a set period of time. once done, the device should do one of the following things with the received samples, depending on the mode of the analyser:
 \begin{enumerate}[itemsep=-1ex]
-	\item Send back the full flash, uncompressed, for analysis of separate flashes.
+	\item Send back the full flash, uncompressed, for the analysis of separate flashes.
 	\item Send back all compressed flashes, by extracting several features.
 \end{enumerate}
 
@@ -46,7 +46,7 @@ The Analyser should also be able to control the flash generator if the system is
 \section{Implementation}
 The system was build by combining several of shelve parts. An overview of the actual build can be seen in figure \ref{fig:acutalBuild}. It shows the different components mounted on a box. This section will explain briefly how each system component is implemented and why each part was chosen.
 
-The flash generator is implemented on an Arduino UNO\cite{ArduinoUno}. This platform was chosen, as it's simple to use, does not require an operating system (OS) and has therefore no unexpected jitter. The LED used in the set-up is the same LED as modelled in chapter\ref{Model}\cite{lamptest}. The power settings of the LED's where chosen after some experimentation with the flash generation and reception and can be seen in equation \ref{eq:Power}.
+The flash generator is implemented on an Arduino UNO\cite{ArduinoUno}. This platform was chosen, as it's simple to use, does not require an operating system (OS) and has therefore no unexpected jitter. The LED used in the set-up is the same LED as modelled in chapter\ref{Model}\cite{lamptest}. The power used by the LED is regulated with a single resistor. The resistors where chosen after some experimentation with the flash generation and reception. The values and resulting power consumption of the LED can be seen in equation \ref{eq:Power}.
 
 \begin{equation}
 \label{eq:Power}
@@ -55,18 +55,24 @@ P_{LED}=\frac{(V_{DD} - U_{LED})^2}{R}
 P_{LED} = \frac{(7.2 - 3.6)^2}{[1, 3, 5]} = [4W, ,1.33W]
 \end{equation}
 
-The reflection receiver is implemented on the shine platform \cite{Shine}. This platform was chosen because it's a simple (no OS required) hands-on platform featuring multiple photo diodes by default. A downside of the shine platform is that it's unable to communicate directly with a computer as it does not has a FTDI interface. This problem was solved by using a processor-less Arduino UNO as bridge between the analyser and shine platform.
+The reflection receiver is implemented on the shine platform \cite{Shine}. This platform was chosen because it's a simple (no OS required) hands-on platform featuring multiple photo diodes by default. The original software of shine sampled each photo diode at 1Khz. This is way too low to see the $10\mu s$ flash resolution. For this reason the software of shine was rewritten to sample in bursts of 50 samples at 210Khz ($\pm 240\mu s$) when the sync signal is received.
 
-The receiver makes use of three photo diodes. The original sensors on shine where replaced with ones more sensitive to visible light. Each sensor is also configured in a different way. Some feature an increased amplification of the measured signal. Others have a longer wire with (intentional) bad shielding to simulate how the system does in a environment with a lot of electromagnetic radiation. An overview of the PD configurations can be seen in table \ref{tbl:PDs}.
+A downside of the shine platform is that it's unable to communicate directly with a computer as it does not has a FTDI interface. This problem was solved by using a processor-less Arduino UNO as bridge between the analyser and shine platform.
+
+The receiver makes use of three photo diodes. The original sensors on shine where replaced with ones more sensitive to visible light. Each sensor is also configured in a different way. Some feature an increased amplification of the measured signal. Others have a longer wire with (intentional) bad shielding which can simulate how the system preforms in a environment with lots of electromagnetic radiation. An overview of the PD configurations can be seen in table \ref{tbl:PDs}.
+
+Another important decision concerns the amplification circuit of the photo diode. The original circuit used of shine features an analogue low-pass filter to remove ripple introduced by the amplifier (See Figure \ref{fig:FristFlashes}). The filter has several side effects. It reduces the signal strength and increases the time the signal is invisible to the system. It was therefore chosen to remove al analogue filters from shine and deal with the ripple with the help of software if required. The ripple effect might even be useful as the it's probably dependent on the received signal and therefore a measure of light the environment.
+
+
 
 \begin{table}[]
 	\centering
 	\label{tbl:PDs}
 	\begin{tabular}{clll}
-		PD\#                   & Wire lenght & Sensitivity & EMC Shield \\ \cline{2-4} 
-		\multicolumn{1}{c|}{1} & Long        & Normal      & Slecteable \\
-		\multicolumn{1}{c|}{2} & Short       & Normal      & Yes        \\
-		\multicolumn{1}{c|}{3} & Short       & Normal*1000 & Yes       
+		PD\#                   & Wire length & Gain  & EMC Shield \\ \cline{2-4} 
+		\multicolumn{1}{c|}{1} & Long        & 1000  & Slecteable \\
+		\multicolumn{1}{c|}{2} & Short       & 5600  & Yes        \\
+		\multicolumn{1}{c|}{3} & Short       & 10000 & Yes       
 	\end{tabular}
 	\caption{Overview of photo diode configurations}
 \end{table}
@@ -91,16 +97,17 @@ The receiver makes use of three photo diodes. The original sensors on shine wher
 \end{figure}
 
 \section{Evaluation}
-The system has been build and tested. Several captured test flashes can be seen in figure \ref{fig:FristFlashes}. Even though the created device has a poor build quality, it has great potential for experimentation with the proposed method of activity detection. The main advantages are:
+The system has been build and tested. Even though the created device has a poor build quality, it has great potential for experimentation with the proposed method of activity detection. The main advantages are:
 \begin{itemize}[itemsep=-1ex]
 	\item Each building block has one clear purpose and can therefore be tackled separately from other components. It's therefore impossible that a timing error in the flash generator software affects the sampling of the receiver or vice versa.
 	\item The build quality is poor. If the project works on this device, it will definitely work on a dedicated platform.
 \end{itemize}
-The next steps for the project is finding a method for extracting useful information from flashes as shown in figure \ref{fig:FristFlashes}. 
+The next steps for the project is finding a method for extracting useful information from flashes as shown in figure \ref{fig:notfiltered}. 
 
 \begin{figure}
 	\centering     %%% not \center
 	\label{fig:FristFlashes}
-    \includegraphics[width=90mm]{pics/no_filter.png}
-	\caption{One of the first received  with the experimental platform.}
+	\subfigure[Unfiltered flash]{\label{fig:notfiltered}\includegraphics[width=60mm]{pics/no_filter.png}}
+	\subfigure[Filtered flash]{\label{fig:filtered}\includegraphics[width=60mm]{pics/analog_filter.png}}
+	\caption{Two flashes captured with the platform. Left is unfiltered, right is filtered}
 \end{figure}

@@ -23,7 +23,7 @@ plot(t,x3,'LineWidth',2,'DisplayName','I_3 (R = 10\Omega)');
 xlabel('time [\mus]');
 ylabel('RSS [adc]');
 title('Influence of I (D = 65cm)');
-
+xlim([0 49*1/0.21])
 legend('show');
 print('InfluenceOfI.png','-dpng')
 hold off

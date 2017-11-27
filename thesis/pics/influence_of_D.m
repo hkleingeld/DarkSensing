@@ -23,7 +23,7 @@ plot(t,x3,'LineWidth',2,'DisplayName','D = 125cm')
 xlabel('time [\mus]');
 ylabel('RSS [adc]');
 title('Influence of D (with I_2)')
-
+xlim([0 49*1/0.21])
 legend('show')
 print('InfluenceOfD.png','-dpng')
 hold off
