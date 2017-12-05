@@ -27,7 +27,7 @@ CarW = 1.8; %Lenght of the object
 CarL = 4.56; %Whidth of the object
 CarH = 1.5; %Hight of the object
 
-objRefl = 0.4; %some colour object
+alb = 0.1:0.1:0.5; %some clore object
 floorRefl = 0.11; %old alphalt albedo
 
 FOV = 120/180*pi; %120 degrees in radians = FOV of the PD
@@ -37,9 +37,9 @@ m = -1/log2(cos(halfconeapex)); %some index describing the radiation pattern
 lumI = 800; %Measured light intensity during verification
 stepsize = 0.1;
 
-
-for Yloc = 1.5:3:4.5  %should always be 0 or bigger than 0.5 CarW for shaddows to work properly!
-    
+yloc = 1.5:3:4.5;
+for yloc_ = 1:2  %should always be 0 or bigger than 0.5 CarW for shaddows to work properly!
+   for alb_ = 1:5    
 total = 0;
 a = 0;
 b = 0;
@@ -49,7 +49,8 @@ e = 0;
 z = 0;
 
     for Xloc = CarL/2:0.5:7.5+CarL %should always be bigger than CarL for shaddows to work properly!
-
+    objRefl = alb(alb_)
+    Yloc = yloc(yloc_)
 %vectors used for angle calculations
 NormPD = [0,0,-1];
 NormLight = [0,0,-1];
@@ -72,7 +73,7 @@ FrontReflection= @(y,z) (y>Yloc-0.5*CarW) * (y<Yloc+0.5*CarW) * (z>0) * (z<CarH)
 xborder1 = CarH*Xloc/(H-CarH) + Xloc;
 xborder2 = H*(CarL-Xloc)/(H - CarH);
 %yborder1 = CarH*(Yloc+CarW)/(H-CarH) + Yloc+CarW;
-yborder1 = H*(Yloc+0.5*CarW)/(H-CarH)
+yborder1 = H*(Yloc+0.5*CarW)/(H-CarH);
 xr = (Yloc-CarW*0.5)/Xloc; %dy/dx
 yr = (Xloc-CarL)/(Yloc+0.5*CarW); %dy/dx
 
@@ -148,14 +149,8 @@ tot = a+b+d+c;
 %direction, thus the obtained results can be mirrored to make calculation
 %faster.
 tot = [fliplr(tot(2:20)) tot];
-x = (0:0.5:38*0.1);
-
-%plot result
-hold on
-plot(tot,'DisplayName',['\alpha = ' num2str(objRefl) ', y = ' num2str(Yloc) ')'])
+   M(yloc_,1,alb_,:) = tot;
+   end
 end
 
-xlabel('Distance traveled (m)')
-ylabel('Illuminance (lx)')
-title(['Human walks in hallway example (\alpha = ' num2str(objRefl) ')'])
-legend('show')
+save('Car drives By Results')

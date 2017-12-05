@@ -1,5 +1,6 @@
 clear all
-H = 2.8;          %hight of the light and PD (located at (0,0,H)
+H = 11;          %hight of the light and PD (located at (0,0,H)
+
 
 %       Overview                Notes: Obj should always move from left to
 %                                      right (-x to x). Yloc should always
@@ -20,37 +21,36 @@ H = 2.8;          %hight of the light and PD (located at (0,0,H)
 %   Xloc = distance on X-axis in meters to front of the car.
 %   Yloc = distance on y-axis in meters to center of the car.
 %   0,0  = Coordinate of the light post, its H meters high.
-CarW = 0.5; %Lenght of the object
-CarL = 0.2; %Whidth of the object
-Carh = 1.4:0.2:1.8; %Hight of the object
+scale = 1
+%volkswagen golf
+CarW = 1.8/scale; %Lenght of the object
+CarL = 4.56/scale; %Whidth of the object
+CarH = 1.5/scale; %Hight of the object
 
-alb = 0.1:0.1:0.5; %some clore object
-floorRefl = 0.35; %Calculated floor albedo
+alb = 0.5; %some clore object
+floorRefl = 0.11; %old alphalt albedo
 
 FOV = 120/180*pi; %120 degrees in radians = FOV of the PD
 
 halfconeapex = (35/2*pi)/180; %Angle at Half Power in radiance
 m = -1/log2(cos(halfconeapex)); %some index describing the radiation pattern
 lumI = 290; %Measured light intensity during verification
-stepsize = 0.025;
+stepsize = 0.2;
 
-yloc = 0:0.2:0.6
-
-for yloc_ = 1:4  %should always be 0 or bigger than 0.5 CarW for shaddows to work properly!
-    for carH_ = 1:3
-    for alb_ = 1:5
+yloc = 0;
+for yloc_ = 1  %should always be 0 or bigger than 0.5 CarW for shaddows to work properly!
+   for alb_ = 1    
 total = 0;
 a = 0;
 b = 0;
 c = 0;
 d = 0;
-e = 0;   
-    for Xloc = 0.5*CarL:0.1:CarL+2  %should always be bigger than CarL for shaddows to work properly!
-    
-CarH = Carh(carH_)
-Yloc = yloc(yloc_)
-objRefl = alb(alb_)
-Xloc
+e = 0;
+z = 0;
+
+    for Xloc = CarL/2:CarL/2:CarL*5 %should always be bigger than CarL for shaddows to work properly!
+    objRefl = alb(alb_)
+    Yloc = yloc(yloc_)
 %vectors used for angle calculations
 NormPD = [0,0,-1];
 NormLight = [0,0,-1];
@@ -71,24 +71,20 @@ FrontReflection= @(y,z) (y>Yloc-0.5*CarW) * (y<Yloc+0.5*CarW) * (z>0) * (z<CarH)
 
 
 xborder1 = CarH*Xloc/(H-CarH) + Xloc;
+xborder2 = H*(CarL-Xloc)/(H - CarH);
 %yborder1 = CarH*(Yloc+CarW)/(H-CarH) + Yloc+CarW;
 yborder1 = H*(Yloc+0.5*CarW)/(H-CarH);
 xr = (Yloc-CarW*0.5)/Xloc; %dy/dx
 yr = (Xloc-CarL)/(Yloc+0.5*CarW); %dy/dx
 
-if(Xloc ~= CarL/2)
-    if(Yloc ~= 0)
-        ObjShaddow= @(x,y) (y > x*xr) * (x > y*yr) * (x < xborder1) * (y > Yloc-0.5*CarW) * (y < yborder1) * (x > Xloc-CarL);
-    else
-        ObjShaddow= @(x,y)  (x > y*yr) * (x > -y*yr) * (x < xborder1) * (y < yborder1) * (y > -yborder1) * (x > Xloc-CarL);
-    end
+if(Xloc == CarL/2)
+    ObjShaddow= @(x,y) (y > Yloc-0.5*CarW) * (y < yborder1) * (x < xborder1) * (x > -xborder1);
+elseif (Xloc < CarL)
+    ObjShaddow= @(x,y) (y > Yloc-0.5*CarW) * (y < yborder1) * (x < xborder1) * (x > -xborder2);
 else
-    if(Yloc ~= 0)
-        ObjShaddow= @(x,y) (x < xborder1) * (x > -xborder1) * (y < yborder1) * (y > Yloc-0.5*CarW);
-    else
-        ObjShaddow= @(x,y) (x < xborder1) * (x > -xborder1) * (y < yborder1) * (y > -yborder1);
-    end
+    ObjShaddow= @(x,y) (y > Yloc-0.5*CarW) * (y < yborder1) * (y > x*xr) * (x > y*yr) * (x < xborder1) * (x > Xloc-CarL);
 end
+
 dist= @(x,y,z) sqrt(x.*x+y.*y+z.*z);
 COSinvalshoek = @(x,y,z,n1,n2,n3) dot([x y z]/dist(x,y,z), [n1 n2 n3]/dist(n1,n2,n3));
 COSuitvalshoek = @(x,y,z,n1,n2,n3) COSinvalshoek(x,y,z,n1,n2,n3);
@@ -119,25 +115,27 @@ rec = @(x,y,z) (acos(dot(NormPD,[x,y,-z]/norm([x,y,-z])))/FOV) < 1;
 PD =@(x,y,z) 1/dist(x,y,z)^2 * COSinvalshoek(x,y,-z,0,0,-1); %* rec(x,y,z);
 PD_=@(x,y) PD(x,y,1);
 
+
 NoObj = @(x,y)  I(x,y,H) * phong(x,y,H,NormTop(1),NormTop(2),NormTop(3),1,1) * PD(x,y,H) * floorRefl * ~ObjShaddow(x,y);
 ObjTop = @(x,y) I(x,y,H-CarH) * phong(x,y,H-CarH,NormTop(1),NormTop(2),NormTop(3),1,1) * PD(x,y,H-CarH) * TopReflection(x,y);
 ObjSide= @(x,z) I(x,Yloc-0.5*CarW,H-z) * phong(x,Yloc-0.5*CarW,H-z,NormSide(1),NormSide(2),NormSide(3),1,1) * PD(x,Yloc-0.5*CarW,H-z) * SideReflection(x,z);
 ObjBack= @(y,z) I(Xloc-CarL,y,H-z) * phong(Xloc-CarL,y,H-z,NormBack(1),NormBack(2),NormBack(3),1,1) * PD(Xloc-CarL,y,H-z) * BackReflection(y,z);
 %ObjFront=@(y,z) I(Xloc+CarL,y,z) * phong(Xloc,y,z,NormFront(1),NormFront(2),NormFront(3),1,1) * PD(Xloc+CarL,y,z) * FrontReflection(y,z);
 
-a= [a NumericIntegration_(NoObj,-3,3,-3,3,stepsize)];
-b= [b NumericIntegration_(ObjTop,-3,3,-3,3,stepsize)];
-c= [c NumericIntegration_(ObjSide,-H,H,0,CarH+stepsize*10,stepsize)]; %object is never going to be in the ground and higher than CarH
-d= [d NumericIntegration_(ObjBack,-1,1,0,CarH+0.5,stepsize)]; %object is never going to be in the ground and higher than CarH
+a= [a NumericIntegration_(NoObj  ,-10 ,10 ,-10 ,10            ,stepsize)];
+b= [b NumericIntegration_(ObjTop ,-10 ,10 ,-10 ,10            ,stepsize)]; %human will only walk in the center of the sidewalk (tus between 0 and 2 m)
+c= [c NumericIntegration_(ObjSide,-10 ,10 ,0  ,CarH+stepsize*10 ,stepsize)]; %object is never going to be in the ground and higher than CarH
+d= [d NumericIntegration_(ObjBack,-10 ,10 ,0  ,CarH+0.5         ,stepsize)]; %object is never going to be in the ground and higher than CarH
 %e= [e NumericIntegration_(ObjFront,-1,1,0,CarH+0.5,0.01)]; %object is never going to be in the ground and higher than CarH
 %a+b+c+d+e
-a
+c
     end
 a(1) = [];
 b(1) = [];
 c(1) = [];
 d(1) = [];
-% e(1) = [];
+e(1) = [];
+z(1) = [];
 
 a(isnan(a)) = 0;
 b(isnan(b)) = 0;
@@ -150,9 +148,9 @@ tot = a+b+d+c;
 %the scenario would be exaclty the same if the car would move in the other
 %direction, thus the obtained results can be mirrored to make calculation
 %faster.
-tot = [fliplr(tot(2:22)) tot];
-M(yloc_,carH_,alb_,:) = tot;
-    end
-    end
+% tot = [fliplr(tot(2:9)) tot];
+   M(yloc_,1,alb_,:) = tot;
+   end
 end
-save('Simulation_results')
+
+save('Car drives By Results')
