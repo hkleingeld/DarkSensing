@@ -1,60 +1,57 @@
-\chapter{Related Work}
-\label{Related Work}
-This section discusses the most important work found related to the thesis. It starts with mentioning similar techniques with the same goal: Detecting human activity. It then summarises all projects done which use light reach the same goal. This chapter finalises with used in other projects using visible light which can be applied in this thesis.
+\section{Related Work}
+\label{sec:Related Work}
+This section presents the related work of this thesis. It starts with giving a short overview of several methods used for passive localisation. It shows the projects which use visible light in their localisation schemes. This section finalises by highlighting a paper which attempts to reduce the visible light used in a similar way to this thesis.
 
-\section{Related techniques}
-Passive localization, the act of sensing the presence of humans or objects which do not actively participate in the process, is a common problem and has been tackled in many different ways by companies and research groups. Several techniques used by these groups will be mentioned here while pointing out what specific ideas could be used to improve the thesis.
+\subsection{Passive localisation}
+Passive localisation is a hot topic in research and has been tackled by many different research groups in several different ways. The most common method found in literature to detect and track humans is by using Passive Infra-Red (PIR) sensors. These sensors detect the infra-red (heat) radiating from objects and draw conclusions from the observed signals. The passive infrared sensor has been around since 1982 \cite{galvin1982passive} and has been used to detect humans since 1994 \cite{fukuda1994human}.
 
-M. Youssef \textit{et al.} created a detect and track application with the help of WIFI access-points (APs) and WIFI monitoring-points (MPs) and an aplication sever (AS)\cite{WIFI_Tracking}. The MPs measure the signal strength of the APs, and transmit this data to the AS. The server runs a moving variance algorithm on all of the received signals to detect significant changes in the signal. An overview of the complete system can be seen in figure \ref{fig:WIFI-tracking}.
+These days, the research in PIR sensors for detecting and tracking humans focuses in two directions. The first direction is to get more information out of PIR sensors by examining the raw data. M. Waelchli \textit{et al.} for example created a method for estimating the location of a person within the view of the sensor \cite{PIR_Single_Tracking}. The second direction is to track humans with the help of several linked sensors. An example of this, by P. Zappi \textit{et al.} is \cite{PIR_Tracking}. They linked a server to multiple binary human activity sensors, in order to locate and track humans in an indoor building.
 
+Another method for passive localisation, which popped into existence more recently, is developed by M. Youssef \textit{et al.}\cite{WIFI_Tracking}. They created a detect and track application with the help of WIFI access-points (APs), WIFI monitoring-points (MPs) and an application server (AS). The MPs measure the signal strength of the APs, and transmit this data to the AS. The server runs a moving variance algorithm on all of the received signals to detect significant changes in the signal. An overview of the complete system can be seen in figure \ref{fig:WIFI-tracking}.
 \begin{figure}[]
 	\centering
-	\label{fig:WIFI-tracking}
 	\includegraphics[width=\textwidth]{pics/MovingVarriance1.png}
-	\caption{Overview of the WIFI tracking system of Moustsafa Youssef \textit{et al.} \cite{WIFI_Tracking}. The left figure shows an overview of the setup where the right figure shows the strength of the APs from the point of view of the MPs. E1 to E8 represent possible 'events' of bypassing persons.}
+	\caption{Overview of the WIFI tracking system of Moustsafa Youssef \textit{et al.} \cite{WIFI_Tracking}. The left figure shows an overview of the setup where the right figure shows the strength of the APs from the point of view of the MPs. E1 to E8 represent possible 'events' of bypassing persons.\label{fig:WIFI-tracking}}
 \end{figure}
 
-M. Valtonen \textit{et al} created a system which passively tracks humans with the help of capacitive street tiles\cite{Tile_Track}. 
-Byunghun Song \textit{et al}\cite{PIR_Tracking}
-Smart street light system \cite{tvilight}
+Another approach to passive localisation is to use the tiles upon we walk as sensors. This was done by M. Valtonen \textit{et al.} \cite{Tile_Track}. The system measures the capacity between several floor tiles and a receiving electrode. With the help of the measurements, they estimate the position of the person standing on top of the tiles.
 
+\subsection{Passive Visible Light Localisation}
+In recent years, a new method for locating and tracking humans has been explored: Passive Visible Light Localisation (PVLL). This method is focussed on using visible light and photo sensors to detect and track humans and objects. Several of these project will be explained briefly, followed by a short comparison between these projects and Dark Sensing.
 
-\section{Human sensing with visible light}
-\label{sec:Visible light communication}
-This thesis attempts to solve the passive localization problem with only visible light a luminaire would normally emit and a single light sensor mounted on the ceiling. Several other projects have attempted similar challenges using visible light. E.D. Lascio \textit{et al.} has created a system which uses a ceiling mounted luminaire and light sensors in the floor as seen in figure \ref{fig:LocalLight} \cite{LocaLight}. A human passing by in interrupt the light rays and cast a shadow on the photo diode, resulting in a detection.
+\subsubsection{Local Light}
+Local light, developed by Lascio \textit{et al.}\cite{LocaLight}, is a system which implements passive localization with the help of visible light. The system consists of 3 parts. A light, light sensing RFID tags and a server. The light illuminates the environment. The RFID tags are mounted in the floor, detecting the light produced by the luminaire. The tags transmit their data to a server which processes the data. An overview of the system can be seen in Figure \ref{fig:LocalLight}.
 
-T. Li \textit{et al.} takes the concept of lights on the ceiling and photo diodes on the floor to the next level in \cite{Human_Sensing_Using_VLC}. By placing multiple lights on the ceiling and photo diodes on the floor, they create a pixelated image of a person standing from the point of view of each light on the ceiling (see figure \ref{fig:humansensingwithvisiblelight}). These pixel-images are then used to reconstruct the original stance of the person scanned.
+The system works by detecting changes in the light intensity. If the photo diode suddenly senses a huge drop in light, because a shadow is casted on the photo diode by an object or person, the system triggers a detection. The server knows the exact location of all luminaries and photo diodes and is therefore capable to of determining where the object or person is at this moment in time.
 
 \begin{figure}[]
 	\centering
-	\label{fig:LocalLight}
 	\includegraphics[width=90mm]{pics/LocalLight.png}
-	\caption{Overview of the LocalLight system of E.D. Lascio \textit{et al}. Lights on the ceiling and light sensing RFID tags on the floor.}
+	\caption{Overview of the LocalLight system of E.D. Lascio \textit{et al.}\cite{LocaLight}. Lights on the ceiling and light sensing RFID tags on the floor.\label{fig:LocalLight}}
 \end{figure}
+
+\subsubsection{Activity sensing using ceiling photo diodes}
+Two different projects have been found which have develop a passive localisation scheme using several light/photo diode pairs mounted together on the ceiling. Both take a slightly different approach.
+
+The first project, by J. Zhang \cite{JakesWork}, created a method capable of localising objects on a line between two light/photo diode pairs. By moving an object with three reflective surfaces underneath a light, he managed to localise them at several points on the line by using the specular component of the reflections bouncing of the object. His test set-up can be seen in figure \ref{Zhangpicca}.
+\begin{figure}[]
+	\centering
+	\includegraphics[width=90mm]{pics/Pic_Jake.png}
+	\caption{Overview of the system used by J. Zhang \cite{JakesWork}\label{Zhangpicca}}
+\end{figure}
+
+The other project, by M. Ibrahim \textit{et al.}, makes use of modulated lights. Each luminaire transmits light in a different pattern. The photo diode, which is placed next to the light, detects what patterns of light it perceives. If the photo diode does not sense one of the lights it normally does, it triggers a detection as the light was intercepted by a bypassing object. An overview of the set-up can be seen in Figure \ref{fig:Ceiling_PD}
 
 \begin{figure}[]
 	\centering
-	\label{fig:humansensingwithvisiblelight}
-	\includegraphics[width=\textwidth]{pics/humansensingwithvisiblelight.png}
-	\caption{The scanned person with the resulting created pixel images.}
-\end{figure}
-
-C. Zhang \textit{et al} \cite{Near_Field_VLS}
-
-J. Zhang for example created a method for localizing and tracking objects with specular surfaces on a line\cite{JakesWork}. 
-
-Another example of indoor activity detection is the project of M. Ibrahim \textit{et al}. They detect humans or bypassing objects with the help of multiple lights and photo diodes hung at a ceiling\cite{Ceiling_PD}. Normally, if nobody is in the room, all lights shine on the floor, and reflect some rays of light back to each photo diode hanging on the ceiling. If an object passes by which interrupts this light ray, then a shadow is created on the floor. The photo-diode hanging at another light will notice the reduced reflection and a detection is triggered. An overview of this set-up can be seen in figure \ref{fig:Ceiling_PD}.
-
-\begin{figure}[]
-	\centering
-	\label{fig:Ceiling_PD}
 	\includegraphics[width=90mm]{pics/lightspdceiling.png}
-	\caption{Overview of the system set-up of "Activity sensing using ceiling photosensors" project \cite{Ceiling_PD}. In this specific situation node 2 and 5 detect shadow caused by the person in the room, while other nodes do not.}
+	\caption{Overview of the system set-up used by M. Ibrahim\cite{Ceiling_PD}. In this specific situation node 2 and 5 detect no light from node 1, because a person is blocking the light.\label{fig:Ceiling_PD}}
 \end{figure}
 
-\section{Related visible light techniques}
-A lot of projects make use of visible light, but in another way 
+\subsubsection{Comparison with Dark Sensing}
+The Dark Sensing project differs from the existing projects in several ways. It's the only project tempting to create a sensing device, only requiring one sensor node instead of multiple and is therefore easier to install and expand. It's also the only project which attempts to detect humans with the main drive of saving energy. It's also the only project which potentially can be implemented outdoor, mounted on a light post for example, as the other PVLL projects where require either a server in reach of the sensors, or other specific environmental features. Dark Sensing has the potential to be a stand alone product.
 
-There is one other project in the VLC world that has nothing to do with human sensing. Zhao Tian \textit{et al} explores the idea of VLC with dark light, a VLC primitive that allows light-based communication to be sustained even when LEDs emit extremely-low luminance \cite{Dark_Light_Rises} \cite{Dark_VLC}. The communication works by generating high power, but short light pulses (500ns). These pulses are then used in a pulse position modulation scheme to achieve communication (1.8Kbps at 1.3m) with light while being nearly invisible to the end user.
+The downside of Dark Sensing is that it only focuses on detecting activity. It's therefore unable to determine where the activity is exactly. All of the other projects are way better in that specific area.
 
-\cite{Human_Sensing_Using_VLC}
+\subsection{Other related projects}
+One project which has nothing to do with passive localisation, but can't miss from the related work section is \textit{"The dark light rises"} by Z. Tian \textit{et al.} \cite{Dark_Light_Rises} \cite{Dark_VLC}. This group explores the idea of Visible Light Communication (VLC) with dark light, a VLC primitive that allows light-based communication to be sustained even when LEDs emit extremely-low luminance. The communication works by generating high power, but short light pulses (500ns). These pulses are then used in a pulse position modulation scheme to achieve communication (1.8Kbps at 1.3m) with light while being nearly invisible to the end user. The goals of Dark sensing and Dark VLC are similar: Save light and therefore energy. Both projects however apply this method in other applications.

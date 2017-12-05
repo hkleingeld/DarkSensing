@@ -2,69 +2,64 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 2
 \BOOKMARK [1][-]{section.1.1}{Problem statement}{chapter.1}% 3
 \BOOKMARK [1][-]{section.1.2}{Contributions}{chapter.1}% 4
-\BOOKMARK [1][-]{section.1.3}{Organization}{chapter.1}% 5
-\BOOKMARK [0][-]{chapter.2}{Background}{}% 6
-\BOOKMARK [1][-]{section.2.1}{Characteristics of a lights}{chapter.2}% 7
-\BOOKMARK [2][-]{subsection.2.1.1}{Units and measures of light}{section.2.1}% 8
-\BOOKMARK [2][-]{subsection.2.1.2}{Modelling a light}{section.2.1}% 9
-\BOOKMARK [2][-]{subsection.2.1.3}{Modelling a reflection}{section.2.1}% 10
-\BOOKMARK [1][-]{section.2.2}{Dimming and its consequences}{chapter.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.1}{Types of dimming}{section.2.2}% 12
-\BOOKMARK [2][-]{subsection.2.2.2}{Limits of dimming}{section.2.2}% 13
-\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 14
-\BOOKMARK [1][-]{section.3.1}{Related techniques}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.2}{Human sensing with visible light}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.3}{Related visible light techniques}{chapter.3}% 17
-\BOOKMARK [0][-]{chapter.4}{Model}{}% 18
-\BOOKMARK [1][-]{section.4.1}{Model description}{chapter.4}% 19
-\BOOKMARK [2][-]{subsection.4.1.1}{Adjustments}{section.4.1}% 20
-\BOOKMARK [2][-]{subsection.4.1.2}{Calculation process}{section.4.1}% 21
-\BOOKMARK [1][-]{section.4.2}{Verification}{chapter.4}% 22
-\BOOKMARK [1][-]{section.4.3}{Modelling of the hallway}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.4}{Modelling of the street}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.5}{Results}{chapter.4}% 25
-\BOOKMARK [1][-]{section.4.6}{Conclusions}{chapter.4}% 26
-\BOOKMARK [0][-]{chapter.5}{Platform}{}% 27
-\BOOKMARK [1][-]{section.5.1}{system components}{chapter.5}% 28
-\BOOKMARK [2][-]{subsection.5.1.1}{Flash generator}{section.5.1}% 29
-\BOOKMARK [2][-]{subsection.5.1.2}{Reflection receiver}{section.5.1}% 30
-\BOOKMARK [2][-]{subsection.5.1.3}{Analyser}{section.5.1}% 31
-\BOOKMARK [1][-]{section.5.2}{Implementation}{chapter.5}% 32
-\BOOKMARK [1][-]{section.5.3}{Evaluation}{chapter.5}% 33
-\BOOKMARK [0][-]{chapter.6}{Flash Analysis}{}% 34
-\BOOKMARK [1][-]{section.6.1}{Flash properties}{chapter.6}% 35
-\BOOKMARK [1][-]{section.6.2}{Flash features}{chapter.6}% 36
-\BOOKMARK [2][-]{subsection.6.2.1}{Feature considerations}{section.6.2}% 37
-\BOOKMARK [2][-]{subsection.6.2.2}{Feature comparison}{section.6.2}% 38
-\BOOKMARK [1][-]{section.6.3}{Conclusion}{chapter.6}% 39
-\BOOKMARK [0][-]{chapter.7}{Analyser}{}% 40
-\BOOKMARK [1][-]{section.7.1}{Received signals}{chapter.7}% 41
-\BOOKMARK [1][-]{section.7.2}{Filter methods}{chapter.7}% 42
-\BOOKMARK [2][-]{subsection.7.2.1}{Low-pass filters}{section.7.2}% 43
-\BOOKMARK [2][-]{subsection.7.2.2}{Highpass filters}{section.7.2}% 44
-\BOOKMARK [2][-]{subsection.7.2.3}{Moving average filters}{section.7.2}% 45
-\BOOKMARK [2][-]{subsection.7.2.4}{Differential filter}{section.7.2}% 46
-\BOOKMARK [2][-]{subsection.7.2.5}{Filter overview}{section.7.2}% 47
-\BOOKMARK [1][-]{section.7.3}{Detection threshold}{chapter.7}% 48
-\BOOKMARK [2][-]{subsection.7.3.1}{Naive thresholds methods}{section.7.3}% 49
-\BOOKMARK [2][-]{subsection.7.3.2}{Standard deviation based threshold}{section.7.3}% 50
-\BOOKMARK [2][-]{subsection.7.3.3}{Variance based threshold}{section.7.3}% 51
-\BOOKMARK [2][-]{subsection.7.3.4}{Detection threshold}{section.7.3}% 52
-\BOOKMARK [2][-]{subsection.7.3.5}{Algorithm overview}{section.7.3}% 53
-\BOOKMARK [0][-]{chapter.8}{System evaluation}{}% 54
-\BOOKMARK [1][-]{section.8.1}{Measures of evaluation}{chapter.8}% 55
-\BOOKMARK [1][-]{section.8.2}{Hallway Evaluation}{chapter.8}% 56
-\BOOKMARK [2][-]{subsection.8.2.1}{Test set-up}{section.8.2}% 57
-\BOOKMARK [2][-]{subsection.8.2.2}{Results}{section.8.2}% 58
-\BOOKMARK [1][-]{section.8.3}{Street}{chapter.8}% 59
-\BOOKMARK [2][-]{subsection.8.3.1}{Test set-up}{section.8.3}% 60
-\BOOKMARK [2][-]{subsection.8.3.2}{Results}{section.8.3}% 61
-\BOOKMARK [1][-]{section.8.4}{Conclusion}{chapter.8}% 62
-\BOOKMARK [0][-]{chapter.9}{Conclusions and Future Work}{}% 63
-\BOOKMARK [1][-]{section.9.1}{Conclusions}{chapter.9}% 64
-\BOOKMARK [1][-]{section.9.2}{Future Work}{chapter.9}% 65
-\BOOKMARK [0][-]{appendix.A}{Code repository}{}% 66
-\BOOKMARK [0][-]{appendix.B}{Raw Model results}{}% 67
-\BOOKMARK [0][-]{appendix.C}{Flash analyser schematics}{}% 68
-\BOOKMARK [1][-]{section.C.1}{LED driver}{appendix.C}% 69
-\BOOKMARK [1][-]{section.C.2}{Interfaces between components}{appendix.C}% 70
+\BOOKMARK [1][-]{section.1.3}{Organisation}{chapter.1}% 5
+\BOOKMARK [0][-]{chapter.2}{Background and related work}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Background}{chapter.2}% 7
+\BOOKMARK [2][-]{subsection.2.1.1}{Dimming of an LED}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.2}{The Phong model}{section.2.1}% 9
+\BOOKMARK [1][-]{section.2.2}{Related Work}{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.1}{Passive localisation}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.2}{Passive Visible Light Localisation}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.3}{Other related projects}{section.2.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Model}{}% 14
+\BOOKMARK [1][-]{section.3.1}{Model description}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.1.1}{Model Adjustments}{section.3.1}% 16
+\BOOKMARK [2][-]{subsection.3.1.2}{Calculation process}{section.3.1}% 17
+\BOOKMARK [1][-]{section.3.2}{Verification}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.3}{Modelling of the hallway}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.4}{Modelling of the street}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.5}{Results}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.6}{Conclusions}{chapter.3}% 22
+\BOOKMARK [0][-]{chapter.4}{Platform}{}% 23
+\BOOKMARK [1][-]{section.4.1}{system components}{chapter.4}% 24
+\BOOKMARK [2][-]{subsection.4.1.1}{Flash generator}{section.4.1}% 25
+\BOOKMARK [2][-]{subsection.4.1.2}{Reflection receiver}{section.4.1}% 26
+\BOOKMARK [2][-]{subsection.4.1.3}{Analyser}{section.4.1}% 27
+\BOOKMARK [1][-]{section.4.2}{Implementation}{chapter.4}% 28
+\BOOKMARK [1][-]{section.4.3}{Evaluation}{chapter.4}% 29
+\BOOKMARK [0][-]{chapter.5}{Flash Analysis}{}% 30
+\BOOKMARK [1][-]{section.5.1}{Flash properties}{chapter.5}% 31
+\BOOKMARK [1][-]{section.5.2}{Flash features}{chapter.5}% 32
+\BOOKMARK [2][-]{subsection.5.2.1}{Feature considerations}{section.5.2}% 33
+\BOOKMARK [2][-]{subsection.5.2.2}{Feature comparison}{section.5.2}% 34
+\BOOKMARK [1][-]{section.5.3}{Flash period}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.4}{Conclusion}{chapter.5}% 36
+\BOOKMARK [0][-]{chapter.6}{Analyser}{}% 37
+\BOOKMARK [1][-]{section.6.1}{Received signals}{chapter.6}% 38
+\BOOKMARK [1][-]{section.6.2}{Filter methods}{chapter.6}% 39
+\BOOKMARK [2][-]{subsection.6.2.1}{Low-pass filters}{section.6.2}% 40
+\BOOKMARK [2][-]{subsection.6.2.2}{Highpass filters}{section.6.2}% 41
+\BOOKMARK [2][-]{subsection.6.2.3}{Moving average filters}{section.6.2}% 42
+\BOOKMARK [2][-]{subsection.6.2.4}{Differential filter}{section.6.2}% 43
+\BOOKMARK [2][-]{subsection.6.2.5}{Filter overview}{section.6.2}% 44
+\BOOKMARK [1][-]{section.6.3}{Detection threshold}{chapter.6}% 45
+\BOOKMARK [2][-]{subsection.6.3.1}{Standard deviation based threshold}{section.6.3}% 46
+\BOOKMARK [2][-]{subsection.6.3.2}{Variance based threshold}{section.6.3}% 47
+\BOOKMARK [1][-]{section.6.4}{Conclusion}{chapter.6}% 48
+\BOOKMARK [0][-]{chapter.7}{System evaluation}{}% 49
+\BOOKMARK [1][-]{section.7.1}{Measures of evaluation}{chapter.7}% 50
+\BOOKMARK [1][-]{section.7.2}{Hallway Evaluation}{chapter.7}% 51
+\BOOKMARK [2][-]{subsection.7.2.1}{Test set-up}{section.7.2}% 52
+\BOOKMARK [2][-]{subsection.7.2.2}{Results}{section.7.2}% 53
+\BOOKMARK [1][-]{section.7.3}{Street}{chapter.7}% 54
+\BOOKMARK [2][-]{subsection.7.3.1}{Test set-up}{section.7.3}% 55
+\BOOKMARK [2][-]{subsection.7.3.2}{Results}{section.7.3}% 56
+\BOOKMARK [1][-]{section.7.4}{Conclusion}{chapter.7}% 57
+\BOOKMARK [0][-]{chapter.8}{Conclusions and Future Work}{}% 58
+\BOOKMARK [1][-]{section.8.1}{Conclusions}{chapter.8}% 59
+\BOOKMARK [1][-]{section.8.2}{Future Work}{chapter.8}% 60
+\BOOKMARK [0][-]{appendix.A}{Code repository}{}% 61
+\BOOKMARK [0][-]{appendix.B}{Raw Model results}{}% 62
+\BOOKMARK [0][-]{appendix.C}{Flash analyser schematics}{}% 63
+\BOOKMARK [1][-]{section.C.1}{LED driver}{appendix.C}% 64
+\BOOKMARK [1][-]{section.C.2}{Interfaces between components}{appendix.C}% 65

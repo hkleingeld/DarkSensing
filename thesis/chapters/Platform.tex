@@ -1,19 +1,17 @@
 \chapter{Platform}
 \label{chp:Platform}
-A device has been made to generate, receive and analyse flashes. The complete system architecture can be found in figure \ref{fig:systemOveriew}. Each component and their interfaces will be discussed briefly, followed by a section showing the final build of the platform.
+A device has been made to generate, receive and analyse flashes. The complete system architecture is shown in figure \ref{fig:systemOveriew}. Each component and their interfaces will be discussed briefly, followed by a section describing the final build of the platform.
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{pics/systemOverview.png}
-	\caption{System architecture of the flash generator/analyser}
-	\label{fig:systemOveriew}
+	\caption{System architecture of the flash generator/analyser.\label{fig:systemOveriew}}
+	
 \end{figure}
 
 \section{system components}
 
 \subsection{Flash generator}
-The flash generator is a device able to control a LED with high precision. It is able to set the period $T$, and the t-on time $T_{on}$. $T$ Controls the frequency of the flashes and $t_{on}$ length. Both parameters can be set with a resolution of $10\mu s$ resulting in a precisely controlled PWM signal with the help of equation \ref{eq:1/f=T}. This signal is sent to a LED driver trough one of three LED drivers, which will make the actual light turn on and off at different light levels.
-
-Besides generating the PWM signal for the light, the flash generator has another function. It sends a sync signal to the flash receiver just before generating a flash. This allows the Flash generator to be ready when the flash starts, so it does not waste time sampling if no flash is generated.
+The flash generator is a device able to control a LED with high precision. It's able to set the period $T$, and the t-on time $T_{on}$. $T$ Controls the frequency of the flashes and $T_{on}$ length. Both parameters can be set with a resolution of $10\mu s$ resulting in a precisely controlled PWM signal with the help of equation \ref{eq:1/f=T}. This signal is sent to a LED driver trough one of three LED drivers, which will make the actual light turn on and off at different light levels.
 
 \begin{equation}
 \label{eq:1/f=T}
@@ -21,60 +19,57 @@ T=\frac{1}{f}
 \qquad
 DutyCycle=\frac{T_{on}}{T} * 100\%
 \end{equation}
+Besides generating the PWM signal for the light, the flash generator has another function. It sends a sync signal to the flash receiver just before generating a flash. This allows the flash generator to be ready when the flash starts, so it does not waste time sampling if no flash is generated.
 
-%\begin{figure}[]
-%	\centering
-%	\includegraphics[]{pics/DutyCycle.png}
-%	\caption{Visualization of how $T$ and $T_{on}$ determine the duty cycle and frequency of the flash generator}
-%	\label{fig:DutyCycle}
-%\end{figure}
+\begin{figure}[]
+	\centering
+	\includegraphics[]{pics/DutyCycle.png}
+	\caption{Visualization of how $T$ and $T_{on}$ determine the duty cycle and frequency of the flash generator.\label{fig:DutyCycle}}
+\end{figure}
 
 \subsection{Reflection receiver}
-The job of the receiver is to sample values while the light is being turned on and off, to then analyse the full reflected flash and extract a feature which properly represents the environment. The receiver therefore should capture flashes as precise and consistent as possible. For this reason, the receiver receives a sync signal from the flash generator, so it can start sampling at exactly the same moment every time relative to the start of the flash. 
+The job of the receiver is to sample values while the light is being turned on and off, to then analyse the full reflected flash and extract a feature which properly represents the environment. The receiver should therefore capture flashes as precise and consistent as possible. For this reason, the receiver receives a sync signal from the flash generator and is therefore able to start sampling at almost the same moment every time, relative to the start of the flash. 
 
-The receiver should continue sampling for a set period of time. once done, the device should do one of the following things with the received samples, depending on the mode of the analyser:
-\begin{enumerate}[itemsep=-1ex]
+The receiver should continue sampling for a set period of time. Once done, the device should do one of the following things with the received samples, depending on the mode of the analyser:
+\begin{enumerate}[itemsep=-1ex,topsep=0pt]
 	\item Send back the full flash, uncompressed, for the analysis of separate flashes.
 	\item Send back all compressed flashes, by extracting several features.
 \end{enumerate}
 
 \subsection{Analyser}
-The analyser will receive samples from the reflection receiver and is ran on a PC in the form of either a C/C++ program (real-time) or as a MATLAB script (post-time). The analyser can set the receiver to raw-. or compressed mode. If the receiver sends raw flashes to the analyser it can be used to analyse this flash. This mode is used in chapter \ref{sec:Flash_characteristics} to analyse single flashes to find the ideal settings for the flash generator and reflection receiver. If the receiver sends compressed flashes, the analyser is able to analyse consecutive flashes. This mode will be used in chapter \ref{sec:Algorithm} to find an algorithm to determine if an object is moving in the area under the light.
+The analyser will receive samples from the reflection receiver and is ran on a PC in the form of either a C/C++ program (real-time) or as a MATLAB script (post-time). The analyser can set the receiver to raw or compressed mode. If the receiver sends raw flashes to the analyser it can be used to analyse these flashes. This mode is used in chapter \ref{chp:Flash_Analysis} to analyse single flashes in order to find the ideal settings for the flash generator and reflection receiver. If the receiver sends compressed flashes, the analyser is able to analyse consecutive flashes. This mode will be used in chapter \ref{chp:Analyser} to find an algorithm to determine if an object is moving in the area under the light.
 
-The Analyser should also be able to control the flash generator if the system is running in real-time mode. It is therefore able to send a packet with $T$, ${T_on}$ and $I_{LED}$ to the device. This allows for real time control of the flash generator.
+The Analyser should also be able to control the flash generator if the system is running in real-time mode. It is therefore able to send a packet with $T$, ${T_{on}}$ and $I_{LED}$ to the device. This allows for real time control of the flash generator.
 
 \section{Implementation}
 The system was build by combining several of shelve parts. An overview of the actual build can be seen in figure \ref{fig:acutalBuild}. It shows the different components mounted on a box. This section will explain briefly how each system component is implemented and why each part was chosen.
 
-The flash generator is implemented on an Arduino UNO\cite{ArduinoUno}. This platform was chosen, as it's simple to use, does not require an operating system (OS) and has therefore no unexpected jitter. The LED used in the set-up is the same LED as modelled in chapter\ref{Model}\cite{lamptest}. The power used by the LED is regulated with a single resistor. The resistors where chosen after some experimentation with the flash generation and reception. The values and resulting power consumption of the LED can be seen in equation \ref{eq:Power}.
+The flash generator is implemented on an Arduino UNO\cite{ArduinoUno}. This platform was chosen, as it's simple to use, does not require an operating system (OS) and has therefore no unexpected jitter. The LED used in the set-up is the same LED as modelled in chapter\ref{Model}. The power used by the LED is regulated with a single resistor. The resistors where chosen after some experimentation with the flash generation and reception. The values and resulting LED current can be seen in equation \ref{eq:Power}.
 
 \begin{equation}
 \label{eq:Power}
-P_{LED}=\frac{(V_{DD} - U_{LED})^2}{R}
+I_{LED}=\frac{V_{DD} - U_{LED}}{R}
 \qquad
-P_{LED} = \frac{(7.2 - 3.6)^2}{[1, 3, 5]} = [4W, ,1.33W]
+I_{LED} = \frac{7 - 3.6}{[1, 3, 5]} = [3.4A, 1.1A, 0.68A]
 \end{equation}
 
-The reflection receiver is implemented on the shine platform \cite{Shine}. This platform was chosen because it's a simple (no OS required) hands-on platform featuring multiple photo diodes by default. The original software of shine sampled each photo diode at 1Khz. This is way too low to see the $10\mu s$ flash resolution. For this reason the software of shine was rewritten to sample in bursts of 50 samples at 210Khz ($\pm 240\mu s$) when the sync signal is received.
+The reflection receiver is implemented on the shine platform \cite{Shine}. This platform was chosen because it's a simple (no OS required) hands-on platform featuring multiple photo diodes by default. The original software of shine sampled each photo diode at 1Khz. This is way too low to see the $10\mu s$ flash resolution. For this reason the software of shine was rewritten to sample in bursts of 50 samples at 210Khz (for a total of$\pm 240\mu s$) when the sync signal is received.
 
-A downside of the shine platform is that it's unable to communicate directly with a computer as it does not has a FTDI interface. This problem was solved by using a processor-less Arduino UNO as bridge between the analyser and shine platform.
+A downside of the shine platform is that it's unable to communicate directly with the analyser as it does not has a FTDI interface. This problem was solved by using a processor-less Arduino UNO as bridge between the analyser and shine platform.
 
 The receiver makes use of three photo diodes. The original sensors on shine where replaced with ones more sensitive to visible light. Each sensor is also configured in a different way. Some feature an increased amplification of the measured signal. Others have a longer wire with (intentional) bad shielding which can simulate how the system preforms in a environment with lots of electromagnetic radiation. An overview of the PD configurations can be seen in table \ref{tbl:PDs}.
 
-Another important decision concerns the amplification circuit of the photo diode. The original circuit used of shine features an analogue low-pass filter to remove ripple introduced by the amplifier (See Figure \ref{fig:FristFlashes}). The filter has several side effects. It reduces the signal strength and increases the time the signal is invisible to the system. It was therefore chosen to remove al analogue filters from shine and deal with the ripple with the help of software if required. The ripple effect might even be useful as the it's probably dependent on the received signal and therefore a measure of light the environment.
-
-
+Another important decision concerns the amplification circuit of the photo diode. The original circuit used by shine features an analogue low-pass filter to remove ripple introduced by the amplifier (See Figure \ref{fig:FristFlashes}). The filter has several side effects. It reduces the signal strength and decreases the time the signal is visible to the system. It was therefore chosen to remove al analogue filters from shine and deal with the ripple with the help of software if required. The ripple effect might even be useful as the it's probably dependent on the received signal and therefore a measure of light the environment.
 
 \begin{table}[]
 	\centering
-	\label{tbl:PDs}
 	\begin{tabular}{clll}
 		PD\#                   & Wire length & Gain  & EMC Shield \\ \cline{2-4} 
 		\multicolumn{1}{c|}{1} & Long        & 1000  & Slecteable \\
 		\multicolumn{1}{c|}{2} & Short       & 5600  & Yes        \\
 		\multicolumn{1}{c|}{3} & Short       & 10000 & Yes       
 	\end{tabular}
-	\caption{Overview of photo diode configurations}
+	\caption{Overview of photo diode configurations.\label{tbl:PDs}}
 \end{table}
 
 \begin{figure}
@@ -92,8 +87,7 @@ Another important decision concerns the amplification circuit of the photo diode
 			\item = The LED
 			\item = Wires to the analyser and power supply
 			\item = Three photo diodes
-	    \end{enumerate}}
-    	\label{fig:acutalBuild}
+	    \end{enumerate}\label{fig:acutalBuild}}
 \end{figure}
 
 \section{Evaluation}
@@ -106,8 +100,7 @@ The next steps for the project is finding a method for extracting useful informa
 
 \begin{figure}
 	\centering     %%% not \center
-	\label{fig:FristFlashes}
 	\subfigure[Unfiltered flash]{\label{fig:notfiltered}\includegraphics[width=60mm]{pics/no_filter.png}}
 	\subfigure[Filtered flash]{\label{fig:filtered}\includegraphics[width=60mm]{pics/analog_filter.png}}
-	\caption{Two flashes captured with the platform. Left is unfiltered, right is filtered}
+	\caption{Two flashes captured with the platform. Left is unfiltered, right is filtered.	\label{fig:FristFlashes}}
 \end{figure}

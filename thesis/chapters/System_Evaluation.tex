@@ -36,9 +36,35 @@ This section evaluates the system on detecting pedestrians walking by through a 
 
 \subsection{Results}
 
+\begin{table}[]
+	\centering
+\begin{tabular}{l|llllllllllll}
+	& d   & m   & l & L & T   & k   & $P_{set1}$ & $P_{set2}$ & $P_{set1,2}$ & $R_{set1}$ & $R_{set2}$ & $R_{set1,2}$ \\ \hline
+	Heuristic                                                    &     &     &   &   &     &     &            &            &              &            &            &              \\ \hline
+	\begin{tabular}[c]{@{}l@{}}Evolution \\ set 1\end{tabular}   & 539 & 654 & 4 & 4 & 3.5 & 0.1 &            &            &              &            &            &              \\ \hline
+	\begin{tabular}[c]{@{}l@{}}Evolution\\ set 2\end{tabular}    &     &     &   &   &     &     &            &            &              &            &            &              \\ \hline
+	\begin{tabular}[c]{@{}l@{}}Evolution\\ set 1, 2\end{tabular} & 475 & 714 & 4 & 4 & 4.5 & 0.8 &            &            &              &            &            &             
+\end{tabular}
+	\caption{Results of the hallway tests\label{tbl:hallwayresults}}
+\end{table}
+
 \section{Street}
-This section evaluates the system on detecting cars driving by on a road. It will first explain the test set-up and procedure, followed by a section showing the ideally found algorithm settings and their detection results.
+This section evaluates the system on detecting cars driving by on a road with a scale model. It will first explain the test set-up and how it was scaled. It then explains the test procedure, followed by a section showing the ideally found algorithm settings and their detection results.
+
 \subsection{Test set-up}
+The street scenario is was tested with a scale model. The dimensions of the scale model where determined with equations X to Y. Equation \ref{PD_FS} represents an approximation of the strength of the received signal. It 
+
+
+\begin{equation}
+\label{PD_FS}
+	PD_{fullscale} = \frac{E_{hor} * S_{car}}{H^2} = \frac{3 * 1}{7^2}
+\end{equation}
+
+\begin{equation}
+\label{PD_S}
+	PD_{scale} = \frac{I_L * \frac{1}{39}}{H^2}
+\end{equation}
+
 \subsection{Results}
 
 \section{Conclusion}

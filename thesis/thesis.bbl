@@ -9,14 +9,6 @@ Marilyne Andersen.
 Arduino.cc.
 \newblock https://store.arduino.cc/arduino-uno-rev3.
 
-\bibitem{Near_Field_VLS}
-Jialiang~Zhang Chi~Zhang, Joshua~Tabor and Xinyu Zhang.
-\newblock Extending mobile interaction through near-field visible light
-  sensing.
-\newblock {\em MobiCom '15 Proceedings of the 21st Annual International
-  Conference on Mobile Computing and Networking}, pages 345--357, September
-  2015.
-
 \bibitem{HandboekBestaandeBouw}
 Lilian~Tieman Chris van~der Nat, Hans~Schelvis.
 \newblock {\em Bestaande bouw, Handboek Politiekeurmerk Veilig Wonen}.
@@ -29,11 +21,11 @@ Thiemo Voigt Carlos Perez-Penichet Elena Di~Lascio, Ambuj~Varshney.
 \newblock {\em IPSN '16 Proceedings of the 15th International Conference on
   Information Processing in Sensor Networks}, (60), April 2016.
 
-\bibitem{Confidence_interval}
-H.P. Lopuhaä L.E.~Meester F.M.~Dekking, C.~Kraaikamp.
-\newblock {\em A modern introduction to probability and statistics}, chapter
-  Confidence intervals for the mean, pages 341--360.
-\newblock Springer, 2014.
+\bibitem{galvin1982passive}
+A.~Galvin and J.K. Guscott.
+\newblock Passive infrared detector.
+\newblock Google Patents, March 1982.
+\newblock US Patent 4,321,594.
 
 \bibitem{Albedo}
 H.~Akbari H.~Taha, D.~Sailor.
@@ -47,10 +39,6 @@ H.~Halbritter.
   definition.
 \newblock Technical report, OSRAM, Opto Semiconductors, March 2014.
 
-\bibitem{aliassing}
-National instruments.
-\newblock http://www.ni.com/white-paper/3000/en.
-
 \bibitem{Shine}
 L.~Klaver and M.A. Zuniga.
 \newblock Shine: A step towards distributed multi-hop visible light
@@ -62,9 +50,17 @@ L.~Klaver and M.A. Zuniga.
 Ikea 702.880.22 led1336r4.
 \newblock http://lamptest.ru/review/ikea-70288022-led1336r4/.
 
-\bibitem{tvilight}
-TVI light.
-\newblock www.tvilight.com/citysense.
+\bibitem{fukuda1994human}
+K.~Iio M.~Fukuda, H.~Numakuraand and A.~Hidaka.
+\newblock Human body detection system.
+\newblock Google Patents, March 1994.
+\newblock US Patent 5,369,269.
+
+\bibitem{PIR_Single_Tracking}
+S.~Bissig M.~Waelchli and T.~Braun.
+\newblock Intensity-based object localization and tracking with wireless
+  sensors.
+\newblock January 2006.
 
 \bibitem{indoor_VLC_no_LOS}
 Esmail M.A. and H.A.~Photon Fathallah.
@@ -95,19 +91,18 @@ Ashok~Agrawala Moustafa~Youssef, Matthew~Mah.
 \newblock {\em MobiCom '07 Proceedings of the 13th annual ACM international
   conference on Mobile computing and networking}, pages 222--229, January 2017.
 
+\bibitem{Advances_In_Optical_Communication}
+Marcos F. Guerra~Medina Oswaldo~González and Inocencio~R. Martín.
+\newblock {\em Advances in Optical Communication}, chapter Multi-User Visible
+  Light Communications, pages 36--62.
+\newblock InTech, November 2014.
+
 \bibitem{PIR_Tracking}
 L.~Benini P.~Zappi, E.~Farella.
 \newblock Enhancing the spatial resolution of presence detection in a pir based
   wireless surveillance network.
 \newblock {\em Advanced Video and Signal Based Surveillance, 2007}, September
   2007.
-
-\bibitem{Human_Sensing_Using_VLC}
-Zhao Tian Andrew T.~Campbell Tianxing~Li, Chuankai~An and Xia Zhou.
-\newblock Human sensing using visible light communication.
-\newblock {\em MobiCom '15 Proceedings of the 21st Annual International
-  Conference on Mobile Computing and Networking}, pages 331--344, September
-  2015.
 
 \bibitem{JakesWork}
 Junwei Zhang.
