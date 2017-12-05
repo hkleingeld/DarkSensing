@@ -25,10 +25,10 @@ enum states {IDLE, START, DETECTING, FINISHING, RESET};
 typedef struct Measurement{
     uint16_t number;
     uint16_t StartDetecting;
-    uint64_t Max[5000];
-    uint64_t Filtered[5000];
-    uint64_t Sum[5000];
-    uint64_t FilteredSum[5000];
+    uint64_t Max[10000];
+    uint64_t Filtered[10000];
+    uint64_t Sum[10000];
+    uint64_t FilteredSum[10000];
     Measurement * next;
 }Measurement;
 
@@ -50,7 +50,7 @@ void SaveMeasurement(Measurement * node){
 
 	fiets.open(filname);
 
-	fiets << node->StartDetecting << "," << itoa(5000,itoabuffer,10) << "\n";
+	fiets << node->StartDetecting << "," << itoa(10000,itoabuffer,10) << "\n";
 	printf("saving ...\n");
 	uint16_t i = 0;
 	while(node->Max[i] != 0){
