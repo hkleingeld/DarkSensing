@@ -2,14 +2,17 @@
 \label{chp:conclusionsandfuturework}
 
 \section{Conclusions}
-TODO CONCLUSIONS
- - It works with crappy hardware
- - 
+% introduction
+This thesis proposed a new method for activity detection while only using visible light and a photodiode with the goal of saving energy. This can be achieved by measuring reflections of light with a photodiode, produced by a light. A model has shown that the changes in reflection are measurable by a photodiode if a person walks by.
 
-	
+A flash does not appear as a perfect square to a photodiode. Therefore, a method was created to extract the most relevant features from a flash. These features where then analysed by a newly created algorithm capable of analysing consecutive flashes.
+
+A prototype has been made with off-the-shelve parts, implementing the proposed system. The prototype was created to work in a hallway of an university. It showed to detect 100\% of all persons directly walking underneath the light, no matter the colour of their clothing or environment the system was placed in. 86.5\% and 76.5\% of pedestrians where detected at 30 and 60 cm from the centre of the set-up. The system has a 25\% chance on a false detection every minute, which is caused by poor build quality of the prototype.
+
+Even though the prototype has a relatively high false positive ratio, it serves as a good proof of concept for detecting activity with short flashes of visible light.
 
 \section{Future Work}
-The present work severs as a proof of concept for detecting activity in the line of sight of an LED. I personally think that the potential of this system is huge, especially if a dedicated platform is created. Below I have listed several ideas for future research, which I think have great potential, if a proper platform is created and it would be awesome if anyone would the dark sensing project to the next level.
+The presented work serves as a proof of concept for detecting activity in the line of sight of an LED. I personally think that the potential of this system is huge, especially if a dedicated platform is created, as most shortcomings of the current prototype can be solved if a better platform is built. Below I have listed several ideas for future research.
 
 \begin{itemize}
 	\item \textbf{Multiple units in one room} - The algorithm is currently designed for a stand-alone device. If we would hang multiple of these systems in the same room then it's likely that some of the light flashes overlap and trigger a false positives regularly. This problem could be solved by having each detector flash in another timeslot, but this requires more research.

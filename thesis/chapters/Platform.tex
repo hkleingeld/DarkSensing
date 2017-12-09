@@ -4,14 +4,14 @@ A device has been made to generate, receive and analyse flashes. The complete sy
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{pics/systemOverview.png}
-	\caption{System architecture of the flash generator/analyser.\label{fig:systemOveriew}}
+	\caption{System architecture of the created platform.\label{fig:systemOveriew}}
 	
 \end{figure}
 
 \section{system components}
 
 \subsection{Flash generator}
-The flash generator is a device able to control a LED with high precision. It's able to set the period $T$, and the t-on time $T_{on}$. $T$ Controls the frequency of the flashes and $T_{on}$ length. Both parameters can be set with a resolution of $10\mu s$ resulting in a precisely controlled PWM signal with the help of equation \ref{eq:1/f=T}. This signal is sent to a LED driver trough one of three LED drivers, which will make the actual light turn on and off at different light levels.
+The flash generator is a device able to control a LED with high precision. It's able to set the period $T$, and the t-on time $T_{on}$. $T$ controls the frequency of the flashes and $T_{on}$ the length. Both parameters can be set with a resolution of $10\mu s$ resulting in a precisely controlled PWM signal with the help of equation \ref{eq:1/f=T}. This signal is sent to a LED driver through one of three LED drivers, which will make the actual light turn on and off at different light levels.
 
 \begin{equation}
 \label{eq:1/f=T}
@@ -19,7 +19,7 @@ T=\frac{1}{f}
 \qquad
 DutyCycle=\frac{T_{on}}{T} * 100\%
 \end{equation}
-Besides generating the PWM signal for the light, the flash generator has another function. It sends a sync signal to the flash receiver just before generating a flash. This allows the flash generator to be ready when the flash starts, so it does not waste time sampling if no flash is generated.
+Besides generating the PWM signal for the light, the flash generator has another function. It sends a sync signal to the flash receiver just before generating a flash. This allows the flash receiver to be ready when the flash starts, so it does not waste time sampling if no flash is generated.
 
 \begin{figure}[]
 	\centering
@@ -37,12 +37,12 @@ The receiver should continue sampling for a set period of time. Once done, the d
 \end{enumerate}
 
 \subsection{Analyser}
-The analyser will receive samples from the reflection receiver and is ran on a PC in the form of either a C/C++ program (real-time) or as a MATLAB script (post-time). The analyser can set the receiver to raw or compressed mode. If the receiver sends raw flashes to the analyser it can be used to analyse these flashes. This mode is used in chapter \ref{chp:Flash_Analysis} to analyse single flashes in order to find the ideal settings for the flash generator and reflection receiver. If the receiver sends compressed flashes, the analyser is able to analyse consecutive flashes. This mode will be used in chapter \ref{chp:Analyser} to find an algorithm to determine if an object is moving in the area under the light.
+The analyser will receive samples from the reflection receiver and is ran on a PC in the form of either a C/C++ program (real-time) or as a MATLAB script (post-time). The analyser can set the receiver to work in \textit{raw} or \textit{compressed} mode. If the receiver sends raw flashes to the analyser it can be used to analyse these flashes in detail. This mode is used in chapter \ref{chp:Flash_Analysis} to analyse single flashes in order to find the ideal settings for the flash generator and reflection receiver. If the receiver sends compressed flashes, the analyser is able to analyse consecutive flashes. This mode will be used in chapter \ref{chp:Analyser} to find an algorithm to determine if an object is moving in the area under the light.
 
 The Analyser should also be able to control the flash generator if the system is running in real-time mode. It is therefore able to send a packet with $T$, ${T_{on}}$ and $I_{LED}$ to the device. This allows for real time control of the flash generator.
 
 \section{Implementation}
-The system was build by combining several of shelve parts. An overview of the actual build can be seen in figure \ref{fig:acutalBuild}. It shows the different components mounted on a box. This section will explain briefly how each system component is implemented and why each part was chosen.
+The system was build by combining several off shelf components. An overview of the actual platform can be seen in figure \ref{fig:acutalBuild}. It shows the different components mounted on a box. This section will explain briefly how each system component is implemented and why each part was chosen.
 
 The flash generator is implemented on an Arduino UNO\cite{ArduinoUno}. This platform was chosen, as it's simple to use, does not require an operating system (OS) and has therefore no unexpected jitter. The LED used in the set-up is the same LED as modelled in chapter\ref{Model}. The power used by the LED is regulated with a single resistor. The resistors where chosen after some experimentation with the flash generation and reception. The values and resulting LED current can be seen in equation \ref{eq:Power}.
 
@@ -53,13 +53,13 @@ I_{LED}=\frac{V_{DD} - U_{LED}}{R}
 I_{LED} = \frac{7 - 3.6}{[1, 3, 5]} = [3.4A, 1.1A, 0.68A]
 \end{equation}
 
-The reflection receiver is implemented on the shine platform \cite{Shine}. This platform was chosen because it's a simple (no OS required) hands-on platform featuring multiple photo diodes by default. The original software of shine sampled each photo diode at 1Khz. This is way too low to see the $10\mu s$ flash resolution. For this reason the software of shine was rewritten to sample in bursts of 50 samples at 210Khz (for a total of$\pm 240\mu s$) when the sync signal is received.
+The reflection receiver is implemented on the shine platform \cite{Shine}. This platform was chosen because it's a simple (no OS required) hands-on platform featuring multiple photodiodes by default. The original software of shine sampled each photodiode at 1Khz. This is way too low to see the $10\mu s$ flash resolution. For this reason the software of shine was rewritten to sample in bursts of 50 samples at 210Khz (for a total of$\pm 240\mu s$) when the sync signal is received.
 
 A downside of the shine platform is that it's unable to communicate directly with the analyser as it does not has a FTDI interface. This problem was solved by using a processor-less Arduino UNO as bridge between the analyser and shine platform.
 
-The receiver makes use of three photo diodes. The original sensors on shine where replaced with ones more sensitive to visible light. Each sensor is also configured in a different way. Some feature an increased amplification of the measured signal. Others have a longer wire with (intentional) bad shielding which can simulate how the system preforms in a environment with lots of electromagnetic radiation. An overview of the PD configurations can be seen in table \ref{tbl:PDs}.
+The receiver makes use of three photodiodes. The original sensors on shine where replaced with ones more sensitive to visible light. Each sensor is also configured in a different way. Some feature an increased amplification of the measured signal. Others have a longer wire with (intentional) bad shielding which can simulate how the system preforms in a environment with lots of electromagnetic radiation. An overview of the PD configurations can be seen in table \ref{tbl:PDs}.
 
-Another important decision concerns the amplification circuit of the photo diode. The original circuit used by shine features an analogue low-pass filter to remove ripple introduced by the amplifier (See Figure \ref{fig:FristFlashes}). The filter has several side effects. It reduces the signal strength and decreases the time the signal is visible to the system. It was therefore chosen to remove al analogue filters from shine and deal with the ripple with the help of software if required. The ripple effect might even be useful as the it's probably dependent on the received signal and therefore a measure of light the environment.
+Another important decision concerns the amplification circuit of the photodiode. The original circuit used by shine features an analogue low-pass filter to remove ripple introduced by the amplifier (See Figure \ref{fig:FristFlashes}). The filter has several side effects. It reduces the signal strength and decreases the time the signal is visible to the system. It was therefore chosen to remove al analogue filters from shine and deal with the ripple with the help of software if required. The ripple effect might even be useful as the it's probably dependent on the received signal strength and therefore a measure of the environment.
 
 \begin{table}[]
 	\centering
@@ -69,7 +69,7 @@ Another important decision concerns the amplification circuit of the photo diode
 		\multicolumn{1}{c|}{2} & Short       & 5600  & Yes        \\
 		\multicolumn{1}{c|}{3} & Short       & 10000 & Yes       
 	\end{tabular}
-	\caption{Overview of photo diode configurations.\label{tbl:PDs}}
+	\caption{Overview of photodiode configurations.\label{tbl:PDs}}
 \end{table}
 
 \begin{figure}
@@ -80,18 +80,18 @@ Another important decision concerns the amplification circuit of the photo diode
 	\caption[]{The platform prototype. Each letter denotes a different component:
 		\begin{enumerate}[label=\Alph*,itemsep=-1ex,topsep=0pt]
 			\item = Reflection receiver
-			\item = Wires to the photo diodes
+			\item = Wires to the photodiodes
 			\item = LED controller
 			\item = Communication bridge between shine and the PC
 			\item = LED driver
 			\item = The LED
 			\item = Wires to the analyser and power supply
-			\item = Three photo diodes
+			\item = Three photodiodes
 	    \end{enumerate}\label{fig:acutalBuild}}
 \end{figure}
 
 \section{Evaluation}
-The system has been build and tested. Even though the created device has a poor build quality, it has great potential for experimentation with the proposed method of activity detection. The main advantages are:
+The system has been built and tested. Even though the created device has a poor build quality, it has great potential for experimentation with the proposed method of activity detection. The main advantages are:
 \begin{itemize}[itemsep=-1ex]
 	\item Each building block has one clear purpose and can therefore be tackled separately from other components. It's therefore impossible that a timing error in the flash generator software affects the sampling of the receiver or vice versa.
 	\item The build quality is poor. If the project works on this device, it will definitely work on a dedicated platform.
