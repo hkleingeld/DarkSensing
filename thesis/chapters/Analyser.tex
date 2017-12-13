@@ -10,6 +10,7 @@ The flash receiver now outputs values at 125Hz, which is a mixture of various li
 This chapter is separated in three parts. The first part shows what signals are received by the photodiode. The second part explains what methods considered to remove unwanted signals from the signal. The final part of this chapter shows what considerations where made to determine threshold of the binary classifier.
 
 \section{Received signals}
+\label{receivedsignals}
 In an ideal world, the dark sensing system only perceives light it emits itself, reflected by the environment. Figure \ref{Signal_properties} shows that this is clearly not the case. Several other factors are influencing the measurements. Equation \ref{eq:Pd_light} has been devised and contains the most common signals the photodiode, $PD$, might receive. Each term of the equation will be discussed briefly while pointing out what the signal looks like.
 
 \begin{figure}
@@ -46,7 +47,7 @@ The goal of the filters is to get rid of unwanted signals in order to make the d
 \subsection{Low-pass filters}
 A low-pass filter can be used to remove $I_{Eac{_n}}$ and $N_{50Hz}$ from the measured signal as their frequencies are far removed from the signal we are interested in $\alpha$ (0.1Hz - 2Hz). Low-pass filters have one big downside for the system. They introduce a delay in the signal, which is bad for the overall response time. Several filters have been tested. The final result is shown in figure \ref{lowpass_example} and is a second order IIR low-pass with its corner frequency at $5Hz$. Using this filter, the complete $N_{50Hz}$ component of the signal is removed and in most cases, $I_{Eac{_n}}$ is removed as well. We are however unable to guarantee the removal of $I_{Eac{_n}}$ because of possible signal aliasing.
 
-Signal aliasing is a phenomenon which occurs if the sample rate $F_{s}$ of a system is too low compared to the signal being sampled. If $F_{s}$ is smaller then twice the frequency of then the sampled signal, the signal will appear as another frequency instead, an alias. This frequency is called $F_{alias}$ and can be calculated with equation \ref{Falias}, where $n$ is the closest integer multiple of $F_{s}$ to the signal being aliased ($F_{Iac}$).
+Signal aliasing is a phenomenon which occurs if the sample rate $F_{s}$ of a system is too low compared to the signal being sampled. If $F_{s}$ is smaller then twice the frequency of the sampled signal, the signal will appear as another frequency instead, an alias. This frequency is called $F_{alias}$ and can be calculated with equation \ref{Falias}, where $n$ is the closest integer multiple of $F_{s}$ to the signal being aliased ($F_{Iac}$).
 
 \begin{equation}
 \label{Falias}
@@ -73,17 +74,17 @@ High-pass filters can be used to remove $I_{Edc_{n}}$ from the signal. In this s
 \end{figure}
 
 \subsection{Moving average filters}
-A moving average can be used to reduce $N(\mu,\sigma^2)$ and the remaining $F_{allias}$. A moving average is effectively a simple low-pass filter with specific frequencies being removed completely at $\frac{F_s}{n}*x$, where $n$ is the number of tabs of the moving average and $x$ any integer greater than 0. Therefore, a makeshift filter can be created instantly if $F_{alias}$ is known, with $n = \left|\frac{F_{s}}{F_{alias}}\right|$.
+A moving average can be used to reduce $N(\mu,\sigma^2)$ and the remaining $F_{allias}$. A moving average is effectively a simple low-pass filter with specific frequencies being removed completely at $\frac{F_s}{n}*x$, where $n$ is the number of samples in the moving average and $x$ any integer greater than 0. Therefore, a makeshift filter can be created instantly if $F_{alias}$ is known, with $n = \left|\frac{F_{s}}{F_{alias}}\right|$.
 
-$F_{alias}$ could be determined with the help of a Fourier transformation and then filtered away with a make-shift moving average. Yes, the Fourier transform costs a lot of computation power which is against our goal of creating a computationally light algorithm, but the transform wouldn't have to be ran every sample. It is probably good enough to run it once every 10 minutes to check if $F_{alias}$ is detected and/or has changed.
+$F_{alias}$ could be determined with the help of a Fourier transformation and then filtered away with a makeshift moving average. Yes, the Fourier transform costs a lot of computation power which is against our goal of creating a computationally light algorithm, but the transform wouldn't have to be ran every sample. It is probably good enough to run it once every 10 minutes to check if $F_{alias}$ is detected and/or has changed.
 
-Another advantage the moving average brings is it reduces the noise by a factor $\sqrt{(n)}$, where n is the number of tabs in the filter. It was therefore considered to scale the moving average, based on the current standard deviation of the noise with the help of equation \ref{eq:SNR_movavg}. The presented formula calculates $n$, so that the 
+Another advantage the moving average brings is that it reduces the noise by a factor $\sqrt{(n)}$, where n is the number of samples in the moving average. It was therefore considered to scale the moving average, based on the current standard deviation of the noise with the help of equation \ref{eq:SNR_movavg}. The presented formula calculates $n$, so that the expected noise level ($T \cdot \sigma$) is always smaller after the moving average than the expected signal ($\mu\cdot ss$).
 
 This method has two downsides. The first is that a moving average, capable of changing every incoming sample is computational expensive. If $n$ changes, then the full moving average needs to be re-evaluated ($n$ summations, 1 division)) instead of using a simple update rule (1 summation, 1 division). Another downside is that if $n$ gets too large, the response time of the system goes down. For these two reasons, the scaling moving average was not implemented in the final algorithm.
 
 \begin{equation}
 \label{eq:SNR_movavg}
-\frac{signal}{noise} = 1 = \frac{\mu * ss}{T * \frac{\sigma}{\sqrt{n}}} \Rightarrow n = \left(\frac{T * \sigma}{\mu*ss}\right)^2
+\frac{signal}{noise} = 1 = \frac{\mu \cdot ss}{T \cdot \frac{\sigma}{\sqrt{n}}} \Rightarrow n = \left(\frac{T \cdot \sigma}{\mu\cdot ss}\right)^2
 \end{equation}
 
 \begin{figure}
@@ -94,7 +95,7 @@ This method has two downsides. The first is that a moving average, capable of ch
 \end{figure}
 
 \subsection{Differential filter}
-The differential filter makes use of the fact that the system is not only able to sample when the light is turned on. Instead, It is possible to take samples while the light is turned off, to obtain $PD_{dark}$. This signal represents all the signals in the environment we are not interested in. If this signal is obtained very close to in time relative to $PD$ ($20\mu s$), then we can assume that all fluctuating sources in both, $PD$ and $PD_{dark}$, are equal. It's therefore possible to subtract the two signals, which would result in the filtered signal shown in equation \ref{eq:Pd_light_dark}.
+The differential filter makes use of the fact that the system is not only able to sample when the light is turned on. Instead, it is possible to take samples while the light is turned off, to obtain $PD_{dark}$. This signal represents all the signals in the environment we are not interested in. If this signal is obtained very close to in time relative to $PD$ ($20\mu s$), then we can assume that all fluctuating sources in both, $PD$ and $PD_{dark}$, are equal. It's therefore possible to subtract the two signals, which would result in the filtered signal shown in equation \ref{eq:Pd_light_dark}.
 
 \begin{equation}
 \label{eq:Pd_dark}
@@ -148,7 +149,7 @@ Using the idea of moving $\sigma$, we can create a simple threshold algorithm wi
 	\qquad
 	(-T < z_i < T) \rightarrow detection 
 \end{equation}
-Figure \ref{fig:InfluenceOfD_noD} shows the described algorithm in action. It can be seen that the bypassing person is detected at sample 2962. This is a good result, but rather slow, especially since we are able to see the signal rise from sample 2875. The reason why the algorithm does not trigger a detection is because the threshold ($T * \sigma$) has risen slightly due to the variance on being increased, which is caused by change in the signal itself. This problem can be solved in a very simple way. Prevent $\sigma$ from being updated before an event happens. This can be achieved by adding a small delay of $d$ samples between X and the threshold. An example of this is shown in Figure \ref{fig:InfluenceOfD_withD}, where the event is detected at 2879 samples, which is 83 samples (0.66 seconds) earlier than the previous result.
+Figure \ref{fig:InfluenceOfD_noD} shows the described algorithm in action. It can be seen that the bypassing person is detected at sample 2962. This is a good result, but rather slow, especially since we are able to see the signal rise from sample 2875. The reason why the algorithm does not trigger a detection is because the threshold ($T * \sigma$, the red line in figure \ref{fig:InfluenceOfD_noD}) has risen slightly due to the variance on being increased, which is caused by change in the signal itself. This problem can be solved in a very simple way. Prevent $\sigma$ from being updated before an event happens. This can be achieved by adding a small delay of $d$ samples between $X$ and the threshold. An example of this is shown in Figure \ref{fig:InfluenceOfD_withD}, where the event is detected at 2879 samples, which is 83 samples (0.66 seconds) earlier than the previous result.
 
 \begin{figure}
 	\centering     %%% not \center
@@ -161,7 +162,7 @@ Several other parameters where added to further improve the classification algor
 
 Another improvement we can make is to not look at only one observation of $\overline{X}$, but $L$ consecutive ones instead. If we then only trigger a detection if $l$ out of $L$ samples cross the threshold then it might be possible to run the algorithm with a smaller $T$ and therefore detect more events. 
 
-Equation \ref{Zscore_improved} shows a mathematical representation of the threshold algorithm. A graphical overview of the complete algorithm (including the filter section) can be seen in Figure \ref{fig:algtot}.
+Equation \ref{Zscore_improved} shows a mathematical representation of the threshold algorithm. A graphical overview of the complete algorithm (including the filter section) can be seen in Figure \ref{fig:fullAlgorithm}.
 
 \begin{equation}
 \label{Zscore_improved}
@@ -171,9 +172,11 @@ Equation \ref{Zscore_improved} shows a mathematical representation of the thresh
 \begin{figure}
 	\centering     %%% not \center
 	\includegraphics[width=120mm]{pics/ThresholdAlgorithmOverview_double_FIFO.png}
-	\caption{Graphical overview of the presented algorithm\label{fig:fullAlgorithm}}
+	\caption{Graphical overview of the presented algorithm.\label{fig:fullAlgorithm}}
 \end{figure}
 
 \section{Conclusion}
 
-This chapter described the considerations made into designing an algorithm capable of classifying a set consecutive flashes. The two resulting algorithms (seen in Figure \ref{fig:fullAlgorithm}) feature two sections. A filter section and a threshold section. The filter section is used to remove the uninteresting signals from the consecutive flashes to improve the $\alpha$ of the signal. The best results where archived by using a low-pass filter (5Hz), a high-pass filter (0.1Hz) and a moving average (based on the biggest noise frequency still left in the signal).
+This chapter described the considerations made into designing an algorithm capable of classifying a set of consecutive flashes. The resulting algorithm (seen in Figure \ref{fig:fullAlgorithm}) feature two sections. A filter section and a threshold section. 
+
+The filter section is used to remove the uninteresting signals from the consecutive flashes to improve the detectability of the signal. The best results where archived by using a low-pass filter (5Hz), a high-pass filter (0.1Hz) and a moving average (based on the biggest noise frequency still left in the signal). The threshold section is used to classify the remaining signal into two groups: Activity detected and no activity detected. This algorithm however requires several parameters to work. These parameters will be determined in the next chapter.

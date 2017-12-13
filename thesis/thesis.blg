@@ -14,14 +14,13 @@ A level-1 auxiliary file: chapters/System_Evaluation.aux
 A level-1 auxiliary file: chapters/conclusionsandfuturework.aux
 The style file: bib/latex8.bst
 A level-1 auxiliary file: appendix/appendix_a.aux
-A level-1 auxiliary file: appendix/appendix_b.aux
 A level-1 auxiliary file: appendix/appendix_c.aux
 Database file #1: bib/mycollection.bib
 I was expecting a `,' or a `}'---line 151 of file bib/mycollection.bib
  :  note      =   "
  :                 "
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 195 of file bib/mycollection.bib
+I was expecting a `,' or a `}'---line 206 of file bib/mycollection.bib
  :  
  :  title     = "The Lighting Handbook",
 (Error may have been on previous line)

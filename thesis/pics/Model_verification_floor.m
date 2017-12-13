@@ -169,8 +169,9 @@ hold on
 plot([0 0.1 0.2 0.3 0.4 0.5] ,[34 27 23 22 21 21],'LineWidth',2,'DisplayName', 'Measured reflection')
 xlabel('Box displacement (m)')
 ylabel('Perceived light (lx)')
-title('Model verification floor (\alpha = 0.375)')
+title('Verification: Floor (A = 0.375)')
 legend('show')
+set(gca,'fontsize', 15);
 print('ModelVerificationResults_floor.png','-dpng')
 % measured radiation pattern
 %  super = ...

@@ -169,7 +169,8 @@ plot([0 0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5],[47 45 43 42 40 40 39 39 3
 %plot([0 0.1 0.2 0.3 0.4 0.8] ,[34 27 23 22 21 19],'LineWidth',2,'DisplayName', 'Measured floor')
 xlabel('Box displacement (m)')
 ylabel('Perceived light (lx)')
-title('Model verification paper floor (\alpha = 0.75)')
+title('Verification: Floor covered with paper (A = 0.75)')
+set(gca,'fontsize', 15);
 legend('show')
 print('ModelVerificationResults_paper.png','-dpng')
 % measured radiation pattern

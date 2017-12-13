@@ -5,7 +5,6 @@ A device has been made to generate, receive and analyse flashes. The complete sy
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{pics/systemOverview.png}
 	\caption{System architecture of the created platform.\label{fig:systemOveriew}}
-	
 \end{figure}
 
 \section{system components}
@@ -57,9 +56,9 @@ The reflection receiver is implemented on the shine platform \cite{Shine}. This 
 
 A downside of the shine platform is that it's unable to communicate directly with the analyser as it does not has a FTDI interface. This problem was solved by using a processor-less Arduino UNO as bridge between the analyser and shine platform.
 
-The receiver makes use of three photodiodes. The original sensors on shine where replaced with ones more sensitive to visible light. Each sensor is also configured in a different way. Some feature an increased amplification of the measured signal. Others have a longer wire with (intentional) bad shielding which can simulate how the system preforms in a environment with lots of electromagnetic radiation. An overview of the PD configurations can be seen in table \ref{tbl:PDs}.
+The receiver makes use of three photodiodes of which it will use one at a time. The original sensors on shine where replaced with ones more sensitive to visible light. Each sensor is configured in a different way. Some feature an increased amplification of the measured signal. Others have a longer wire with (intentional) bad shielding which can simulate how the system preforms in a environment with lots of electromagnetic radiation. An overview of the PD configurations can be seen in table \ref{tbl:PDs}.
 
-Another important decision concerns the amplification circuit of the photodiode. The original circuit used by shine features an analogue low-pass filter to remove ripple introduced by the amplifier (See Figure \ref{fig:FristFlashes}). The filter has several side effects. It reduces the signal strength and decreases the time the signal is visible to the system. It was therefore chosen to remove al analogue filters from shine and deal with the ripple with the help of software if required. The ripple effect might even be useful as the it's probably dependent on the received signal strength and therefore a measure of the environment.
+Another important decision concerns the amplification circuit of the photodiode. The original circuit used by shine uses an analogue low-pass filter to remove ripple introduced by the amplifier (See Figure \ref{fig:FristFlashes}). The filter has several side effects. It reduces the signal strength and decreases the time the signal is visible to the system. It was therefore chosen to remove al analogue filters from shine and deal with the ripple with the help of software if required. The ripple effect might even be useful as the it's probably dependent on the received signal strength and therefore a measure of the environment.
 
 \begin{table}[]
 	\centering
@@ -90,7 +89,7 @@ Another important decision concerns the amplification circuit of the photodiode.
 	    \end{enumerate}\label{fig:acutalBuild}}
 \end{figure}
 
-\section{Evaluation}
+\section{Summary}
 The system has been built and tested. Even though the created device has a poor build quality, it has great potential for experimentation with the proposed method of activity detection. The main advantages are:
 \begin{itemize}[itemsep=-1ex]
 	\item Each building block has one clear purpose and can therefore be tackled separately from other components. It's therefore impossible that a timing error in the flash generator software affects the sampling of the receiver or vice versa.

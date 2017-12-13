@@ -26,7 +26,7 @@
 \BOOKMARK [2][-]{subsection.4.1.2}{Reflection receiver}{section.4.1}% 26
 \BOOKMARK [2][-]{subsection.4.1.3}{Analyser}{section.4.1}% 27
 \BOOKMARK [1][-]{section.4.2}{Implementation}{chapter.4}% 28
-\BOOKMARK [1][-]{section.4.3}{Evaluation}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.3}{Summary}{chapter.4}% 29
 \BOOKMARK [0][-]{chapter.5}{Flash Analysis}{}% 30
 \BOOKMARK [1][-]{section.5.1}{Flash properties}{chapter.5}% 31
 \BOOKMARK [1][-]{section.5.2}{Flash features}{chapter.5}% 32
@@ -47,23 +47,12 @@
 \BOOKMARK [1][-]{section.6.4}{Conclusion}{chapter.6}% 47
 \BOOKMARK [0][-]{chapter.7}{System evaluation}{}% 48
 \BOOKMARK [1][-]{section.7.1}{Test set-up}{chapter.7}% 49
-\BOOKMARK [1][-]{section.7.2}{Evolutionary algorithm}{chapter.7}% 50
-\BOOKMARK [1][-]{section.7.3}{Results}{chapter.7}% 51
+\BOOKMARK [1][-]{section.7.2}{Algorithm parameters}{chapter.7}% 50
+\BOOKMARK [1][-]{section.7.3}{Evaluation}{chapter.7}% 51
 \BOOKMARK [1][-]{section.7.4}{Conclusion}{chapter.7}% 52
-\BOOKMARK [1][-]{section.7.5}{Algorithm settings}{chapter.7}% 53
-\BOOKMARK [2][-]{subsection.7.5.1}{The labelled dataset}{section.7.5}% 54
-\BOOKMARK [2][-]{subsection.7.5.2}{The fitness function}{section.7.5}% 55
-\BOOKMARK [2][-]{subsection.7.5.3}{Evolutionary results}{section.7.5}% 56
-\BOOKMARK [1][-]{section.7.6}{Algorithm evaluation}{chapter.7}% 57
-\BOOKMARK [2][-]{subsection.7.6.1}{Measures of evaluation}{section.7.6}% 58
-\BOOKMARK [2][-]{subsection.7.6.2}{Algorithm tweaking}{section.7.6}% 59
-\BOOKMARK [2][-]{subsection.7.6.3}{results}{section.7.6}% 60
-\BOOKMARK [1][-]{section.7.7}{Conclusion}{chapter.7}% 61
-\BOOKMARK [0][-]{chapter.8}{Conclusions and Future Work}{}% 62
-\BOOKMARK [1][-]{section.8.1}{Conclusions}{chapter.8}% 63
-\BOOKMARK [1][-]{section.8.2}{Future Work}{chapter.8}% 64
-\BOOKMARK [0][-]{appendix.A}{Code repository}{}% 65
-\BOOKMARK [0][-]{appendix.B}{Raw Model results}{}% 66
-\BOOKMARK [0][-]{appendix.C}{Flash analyser schematics}{}% 67
-\BOOKMARK [1][-]{section.C.1}{LED driver}{appendix.C}% 68
-\BOOKMARK [1][-]{section.C.2}{Interfaces between components}{appendix.C}% 69
+\BOOKMARK [0][-]{chapter.8}{Conclusions and Future Work}{}% 53
+\BOOKMARK [1][-]{section.8.1}{Conclusions}{chapter.8}% 54
+\BOOKMARK [1][-]{section.8.2}{Future Work}{chapter.8}% 55
+\BOOKMARK [0][-]{appendix.A}{Code repository}{}% 56
+\BOOKMARK [0][-]{appendix.B}{Flash analyser schematics}{}% 57
+\BOOKMARK [1][-]{section.B.1}{LED driver}{appendix.B}% 58

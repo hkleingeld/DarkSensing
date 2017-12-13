@@ -25,7 +25,7 @@ The test set-up has several parameters which can affect the perceived flash: $T_
 
 Figure \ref{fig:InfOfTon} shows several responses for different $T_{on}$. The Figure shows that all signals closely match each other, until the light is turned off. This is a useful property as this means it's possible to reduce the $T_{on}$ with no influence on the signal, if the ending of the flash is not used.
 
-Figure \ref{fig:InfOfI} shows the influence of using the different amplification circuits of the flash generator. It can be seen that the LED powered with more current (because of the smaller resistor) is perceived as brighter to the system than the lights powered with a smaller current. It's also observed that the LED powered with higher currents show up earlier to the system. This is because LEDs driven with higher currents turn on faster \cite{LED_on}. This means that if a lower LED current is used a bigger $T_{on}$ is required to obtain useful information.
+Figure \ref{fig:InfOfI} shows the influence of using the different amplification circuits of the flash generator. It can be seen that the LED powered with more current (because of the smaller resistor) is perceived as brighter to the system than the lights powered with a smaller current. It's also observed that the LED powered with higher currents show up earlier to the system. This is because LEDs driven with higher currents turn on faster \cite{LED_on}. This means that if a lower LED current is used, a longer $T_{on}$ is required to obtain useful information.
 
 Figure \ref{fig:InfOfD} shows a set of measured flashes at a variety of distances from the wall. It clearly shows that if the distance increases, the observed light decreases. This is logical, as when light travels longer distances, the relative intensity of the light decreases. 
 
@@ -82,7 +82,7 @@ Q(PD) = \left(\frac{\mu(PD_{NoEvent}) - min(PD_{event})}{\sigma(PD_{NoEvent})} +
 Q(PD) = \frac{max(PD_{Event}) - min(PD_{Event})}{\sigma(PD_{NoEvent})} 
 \end{equation}
 
-The test was done with all combinations of $S_{PD}$ and $I$. Only the combinations of $PD_2, I_{1}$ and $PD3, I_{3}$ gave potential usable results at full scale as for other combinations the flash was invisible or too bright (saturation) to observe. Several consecutive captured features can be seen in the Figures \ref{fig:SimpleFeatures} and \ref{fig:complexFeatures}. These where then used to calculated $Q$ for each scenario. An overview of all detectability values can be seen in table \ref{SNR_results}.
+The test was done with all combinations of $S_{PD}$ and $I$. Only the combinations of $S{PD_2}, I_{1}$ and $S_{PD_3}, I_{3}$ gave potential usable results at full scale as for other combinations the flash was invisible or too bright (saturation) to observe. Several consecutive captured features can be seen in the Figures \ref{fig:SimpleFeatures} and \ref{fig:complexFeatures}. These where then used to calculated $Q$ for each scenario. An overview of all detectability values can be seen in table \ref{SNR_results}.
 
 Based on the results of the $Q$ test it was chosen to use the Filtered sum method with $T_{on} = 200\mu s$. This method gives better results than the maximum and filtered maximum methods because more measurements are used to determine the final value, leading to lower standard error. The reason that this method works better than the sum method lies in the fact that the filtered signal is a better representation for the environment that the rippled signal. This can also be seen in the difference between the maximum and filtered maximum.
 
@@ -104,18 +104,18 @@ Based on the results of the $Q$ test it was chosen to use the Filtered sum metho
 	\centering     %%% not \center
 	\subfigure[]{\label{fig:simple_PD2}\includegraphics[width=60mm]{pics/SNR_simple_PD2.png}}
 	\subfigure[]{\label{fig:simple_PD3}\includegraphics[width=60mm]{pics/SNR_simple_PD3.png}}
-	\caption{Data extracted using the maximum and filtered maximum methods with $T_{on} = 250\mu s$.\label{fig:SimpleFeatures}}
+	\caption{Data extracted from consecutive flashes using the maximum and filtered maximum methods with $T_{on} = 250\mu s$.\label{fig:SimpleFeatures}}
 \end{figure}
 
 \begin{figure}
 	\centering     %%% not \center
 	\subfigure[]{\label{fig:complex_PD2}\includegraphics[width=60mm]{pics/SNR_complex_PD2.png}}
 	\subfigure[]{\label{fig:complex_PD3}\includegraphics[width=60mm]{pics/SNR_complex_PD3.png}}
-	\caption{Data extracted using the sum and filtered sum method with $T_{on} = 200\mu s$.\label{fig:complexFeatures}}
+	\caption{Data extracted from consecutive flashes using the sum and filtered sum method with $T_{on} = 200\mu s$.\label{fig:complexFeatures}}
 \end{figure}
 
 \section{Flash period}
-The final parameter to decide is the period of the signal, $T$. This value has no influence on the detectability of the signal. It has however a clear influence on how much light is used by the system, as decreasing $T$ directly increases the amount of flashes which occur. We can't choose a too low value for $T$ as then users will observe flickering of the light. Another reason $T$ can't be chosen too low is that certain kind of noise still needs to be filtered out of the system. It is almost guaranteed that some 50Hz component will be seen in the signal, as long as it's connected to the net. 
+The final parameter to decide is the period of the signal, $T$. This value has no influence on the detectability of the signal. It has however a clear influence on how much light is used by the system, as decreasing $T$ directly increases the amount of flashes which occur. We can't choose a too low value for $T$ as then users will observe the flickering of the light. Another reason $T$ can't be chosen too low is that certain kind of noise still needs to be filtered out of the system. It is almost guaranteed that some 50Hz component will be seen in the signal, as long as it's connected to the net. 
 
 For these reasons, $T$ was chosen to be 800$\mu s$ resulting in a flash frequency of 125Hz. This frequency is high enough to filter the expected 50Hz noise. Even though literature recommends at least 200Hz to prevent the visibility of flickering, none was observed by 10 different test subjects with this setting of $T$.
 

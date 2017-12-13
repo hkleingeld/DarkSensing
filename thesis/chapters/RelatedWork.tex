@@ -7,12 +7,7 @@ Passive localisation is a hot topic in research and has been tackled by many dif
 
 These days, the research in PIR sensors for detecting and tracking humans focuses in two directions. The first direction is to get more information out of PIR sensors by examining the raw data. M. Waelchli \textit{et al.} for example created a method for estimating the location of a person within the view of the sensor \cite{PIR_Single_Tracking}. The second direction is to track humans with the help of several linked sensors. An example of this, by P. Zappi \textit{et al.} is \cite{PIR_Tracking}. They linked a server to multiple binary human activity sensors, in order to locate and track humans in an indoor building.
 
-Another method for passive localisation, which popped into existence more recently, is developed by M. Youssef \textit{et al.}\cite{WIFI_Tracking}. They created a detect and track application with the help of WIFI access-points (APs), WIFI monitoring-points (MPs) and an application server (AS). The MPs measure the signal strength of the APs, and transmit this data to the AS. The server runs a moving variance algorithm on all of the received signals to detect significant changes in the signal. An overview of the complete system can be seen in figure \ref{fig:WIFI-tracking}.
-\begin{figure}[]
-	\centering
-	\includegraphics[width=\textwidth]{pics/MovingVarriance1.png}
-	\caption{Overview of the WIFI tracking system of Moustsafa Youssef \textit{et al.} \cite{WIFI_Tracking}. The left figure shows an overview of the setup where the right figure shows the strength of the APs from the point of view of the MPs. E1 to E8 represent possible 'events' of bypassing persons.\label{fig:WIFI-tracking}}
-\end{figure}
+Another method for passive localisation, which popped into existence more recently, is developed by M. Youssef \textit{et al.}\cite{WIFI_Tracking}. They created a detect and track application with the help of WIFI access-points (APs), WIFI monitoring-points (MPs) and an application server (AS). The MPs measure the signal strength of the APs, and transmit this data to the AS. The server runs a moving variance algorithm on all of the received signals to detect significant changes in the signal.
 
 Another approach to passive localisation is to use the tiles upon we walk as sensors. This was done by M. Valtonen \textit{et al.} \cite{Tile_Track}. The system measures the capacity between several floor tiles and a receiving electrode. With the help of the measurements, they estimate the position of the person standing on top of the tiles.
 
@@ -31,7 +26,7 @@ The system works by detecting changes in the light intensity. If the photo diode
 \end{figure}
 
 \subsubsection{Activity sensing using ceiling photo diodes}
-Two different projects have been found which have develop a passive localisation scheme using several light/photo diode pairs mounted together on the ceiling. Both take a slightly different approach.
+Three different projects have been found which have develop a passive localisation scheme using several light/photo diode pairs mounted together on the ceiling. Both take a slightly different approach.
 
 The first project, by J. Zhang \cite{JakesWork}, created a method capable of localising objects on a line between two light/photo diode pairs. By moving an object with three reflective surfaces underneath a light, he managed to localise them at several points on the line by using the specular component of the reflections bouncing of the object. His test set-up can be seen in figure \ref{Zhangpicca}.
 \begin{figure}[]
@@ -40,7 +35,7 @@ The first project, by J. Zhang \cite{JakesWork}, created a method capable of loc
 	\caption{Overview of the system used by J. Zhang \cite{JakesWork}\label{Zhangpicca}}
 \end{figure}
 
-The other project, by M. Ibrahim \textit{et al.}, makes use of modulated lights. Each luminaire transmits light in a different pattern. The photo diode, which is placed next to the light, detects what patterns of light it perceives. If the photo diode does not sense one of the lights it normally does, it triggers a detection as the light was intercepted by a bypassing object. An overview of the set-up can be seen in Figure \ref{fig:Ceiling_PD}
+The second project, by M. Ibrahim \textit{et al.} \ref{fig:Ceiling_PD}, makes use of modulated lights. Each luminaire transmits light in a different pattern. The photo diode, which is placed next to the light, detects what patterns of light it perceives. If the photo diode does not sense one of the lights it normally does, it triggers a detection as the light was intercepted by a bypassing object. An overview of the set-up can be seen in Figure \ref{fig:Ceiling_PD}/
 
 \begin{figure}[]
 	\centering
@@ -49,9 +44,9 @@ The other project, by M. Ibrahim \textit{et al.}, makes use of modulated lights.
 \end{figure}
 
 \subsubsection{Comparison with Dark Sensing}
-The Dark Sensing project differs from the existing projects in several ways. It's the only project tempting to create a sensing device, only requiring one sensor node instead of multiple and is therefore easier to install and expand. It's also the only project which attempts to detect humans with the main drive of saving energy. It's also the only project which potentially can be implemented outdoor, mounted on a light post for example, as the other PVLL projects where require either a server in reach of the sensors, or other specific environmental features. Dark Sensing has the potential to be a stand alone product.
+The Dark Sensing project differs from the existing projects in several ways. It's the only project tempting to create a sensing device, only requiring one sensor node instead of multiple and is therefore easier to install and expand. It's also the only project which attempts to save energy. It's also the only project which potentially can be implemented outdoor, mounted on a light post for example, as the other PVLL projects where require either a server in reach of the sensors, or other specific environmental features. Dark Sensing has the potential to be a stand alone product.
 
-The downside of Dark Sensing is that it only focuses on detecting activity. It's therefore unable to determine where the activity is exactly. All of the other projects are way better in that specific area.
+The downside of Dark Sensing is that it only focuses on detecting activity. It's therefore unable to track users. All of the other projects are way better in that specific area.
 
 \subsection{Other related projects}
-One project which has nothing to do with passive localisation, but can't miss from the related work section is \textit{"The dark light rises"} by Z. Tian \textit{et al.} \cite{Dark_Light_Rises} \cite{Dark_VLC}. This group explores the idea of Visible Light Communication (VLC) with dark light, a VLC primitive that allows light-based communication to be sustained even when LEDs emit extremely-low luminance. The communication works by generating high power, but short light pulses (500ns). These pulses are then used in a pulse position modulation scheme to achieve communication (1.8Kbps at 1.3m) with light while being nearly invisible to the end user. The goals of Dark sensing and Dark VLC are similar: Save light and therefore energy. Both projects however apply this method in other applications.
+One project that is not related to passive localisation, but inspired us to use short pusles of light is \textit{"The dark light rises"} by Z. Tian \textit{et al.} \cite{Dark_Light_Rises} \cite{Dark_VLC}. This group explores the idea of Visible Light Communication (VLC) with dark light, a VLC primitive that allows light-based communication to be sustained even when LEDs emit extremely-low luminance. The communication works by generating high power, but short light pulses (500ns). These pulses are then used in a pulse position modulation scheme to achieve communication (1.8Kbps at 1.3m) with light while being nearly invisible to the end user. The goals of Dark sensing and Dark VLC are similar: Save light and therefore energy. Both projects however apply this method in different applications.

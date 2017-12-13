@@ -35,7 +35,7 @@ xlim([2200 4200])
 xlabel('Sample number');
 ylabel('Extracted measure');
 legend('show')
-title('PD_3, I_3')
+title('S_P_D_3, I_3')
 print('SNR_simple_PD2.png','-dpng')
 
 
@@ -48,7 +48,7 @@ xlim([2200 4200])
 xlabel('Sample number');
 ylabel('Extracted measure');
 legend('show')
-title('PD_3, I_3')
+title('S_P_D_3, I_3')
 print('SNR_complex_PD2.png','-dpng')
 
 
@@ -57,11 +57,12 @@ figure('pos',[10 10 550 425/2])
 hold on
 plot(x2_PD3,'DisplayName','Maximum')
 plot(x1_PD3,'DisplayName','Filtered maximum')
-xlim([1600 3600])
+xlim([2000 4000])
+ylim([700 2700])
 xlabel('Sample number');
 ylabel('Extracted measure');
 legend('show');
-title('PD_2, I_1');
+title('S_P_D_2, I_1');
 print('SNR_simple_PD3.png','-dpng');
 
 close
@@ -69,11 +70,11 @@ figure('pos',[10 10 550 425/2])
 hold on
 plot(x3_PD3,'DisplayName','Sum')
 plot(x4_PD3,'DisplayName','Filtered sum')
-xlim([1600 3600])
+xlim([2000 4000])
 xlabel('Sample number');
 ylabel('Extracted measure');
 legend('show');
-title('PD_2, I_1');
+title('S_P_D_2, I_1');
 print('SNR_complex_PD3.png','-dpng');
 
 r1 = (max(x1_PD2(1000:3000)) - mean(x1_PD2(500:1500))) /std(x1_PD2(500:1500))

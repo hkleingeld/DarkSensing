@@ -6,13 +6,11 @@ The idea of human sensing is not new. Everybody in the western world has walked 
 
 This thesis explores the idea of detecting changes in the environment with reflections of visible light. The proposed system works in the following manner: If nothing is in the area, the light will be turned on, but outputting a very low light level. Some of the light will reflect off the environment back to the light source. This can be measured with the photodiode. The signal received is a measure of the illuminated area. If something were to change in that area, a car drives by for example, then the reflections in the environment will change and therefore the light perceived by the photodiode will change as well. These changes will then result in a detection by the system which will turn the light on at full brightness. An overview of the scenario can be seen in \ref{fig:Introduction}.
 
-This method by itself does not save energy as the light used in the system is always turned on. If we are able to reduce the light output while maintaining the ability to pick up meaningful reflections, then the system would save energy. This can be achieved by turning the light on and off very quickly. Then, if the reflections are only measured when the light is fully turned on, we can capture a reflection while saving energy, because the light is only on part of the time.
 \begin{figure}[]
 	\centering     %%% not \center
 	\includegraphics[width=120mm]{pics/SystemScenario.png}
 	\caption{When no object is in the area, the luminaire will barely generate any light. If an object drives into the area, the reflections will be picked up by the photodiode, which will then turn the light on. \label{fig:Introduction}}
 \end{figure}
-
 The ultimate goal of the proposed system is to reduce the time the light needs to be on the nearly zero. This will lead to a light which barely consumes any energy while nobody is around but is still able to detect people, cars or other objects passing by. It might even be possible to decrease the light output to an amount which is invisible to the human eye, resulting in an unnoticeable, activity detecting, energy-saving device.
 
 \section{Problem statement}
@@ -22,19 +20,19 @@ The ultimate goal of the proposed system is to reduce the time the light needs t
 \\
 This problem can be divided into three sub-questions:
 \begin{itemize}\itemsep2pt
-	\item How strong is a reflection obtained from a flash in a realistic scenario and how much does this reflection vary if an object enters the area?
-	\item What are the challenges in obtaining reflections when the light is turned on for a very short time and how can they be tackled?
-	\item What additional signals are received by the system (besides the reflection of the flash) and what algorithm can be used to convert the received signal in a reliable logical signal: Detection or no detection?
+	\item How strong is a reflection obtained from a flash in a realistic scenario and how much does this reflection change if an object enters the area?
+	\item What are the challenges in obtaining reflections when using a low-intensity light and how can they be tackled?
+	\item What additional signals are received by the system (noise) and what algorithm can be used to convert the received signal in a reliable logical signal: Detection or no detection?
 \end{itemize}
 
 \section{Contributions}
 \label{sec:Contributions}
-This thesis proposes \textbf{Dark Sensing}, a system that uses reflections of a LED controlled with a low duty cycle (4\%), and therefore nearly invisible to the human eye, to detect changes in the surrounding area.
+This thesis proposes \textbf{Dark Sensing}, a system that uses reflections of an LED controlled with a low duty cycle (4\%), and therefore nearly invisible to the human eye, to detect changes in the surrounding area.
 \begin{itemize}\itemsep2pt
 	\item A model, estimating the change in signal (reflected light) when a object moves under, leaves or passes by the LED in different environments.
 	\item A method to convert a captured reflection of the LED into a usable measure of the environment.
 	\item An algorithm which analyses features of consecutive flashes and is capable of detecting objects moving under, leaving or passing through the illuminated area.
-	\item A prototype capable of detecting 87\% of all humans passing by in a realistic environment.
+	\item A prototype capable of detecting between 73\% and 90\% of all humans passing by in a realistic environment dependent on the allowed false positive ratio (0 - 5\%).
 \end{itemize}
 
 \section{Organisation}
