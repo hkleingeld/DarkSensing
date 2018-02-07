@@ -1,0 +1,1 @@
+This folder contains different kind of captured data. Note that almost all data is "old" and not captured with the most recent system and therefore can't be used to evaluate the system.

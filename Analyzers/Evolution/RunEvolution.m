@@ -1,42 +1,51 @@
 clear all
-% good seetings found:      0   164   566     2    54 = 15/66
+% n = N/A, was automated with FFT mode
+% d = number of sapmles in D*10
+% m = number of sapmles in M*10
+% l = detections in a row until true detection
+% T = scalefactor /20 (16 becomes T = 3.2)
+% k = Offset of the curve
 
+%     d   m   l   L   T   k
+LB = [1   1   1   1   10 -10]; %lower bound
+UB = [100 100 10  10  100 10]; %upper bound
 
-% n = number of sapmles in N, if n == 0, then FFT mode
-% d = number of sapmles in D
-% m = number of sapmles in M
-% z = detections in a row until true detection
-% T = scalefactor /10 (35 becomes T = 3.5)
-%
-%     n   d   m   z   Z   T
-LB = [1   0   3   1   1   1 ]; %lower bound
-UB = [10  800 800 10  10  400]; %upper bound
+%     d   m   l   L   T  (for STD algortihm)
+%LB = [1   1   1   1   1  ]; %lower bound
+%UB = [100 100 10  10  100]; %upper bound
 
 %tbh, no clue what this does, just copy pasted it form the web, it puts up
 %a screen which plots the progression of the algorithm
 options = optimoptions(@ga,'PlotFcn',{@gaplotbestf,@gaplotmaxconstr},'Display','iter');
 
-% Run on Car dataset
-%[x,fval,exitflag,output,population,scores] = ga(@Evolution,5,[],[],[],[],LB,UB,@simple_constraint,[1,2,3,4,5],options)
+%100    96     4     5    49     9
+%79    98     3     2    53     7
+%Run with matlab only (Absolute mode)
+[x,fval,exitflag,output,population,scores] = ga(@Evolution_Matlab_Only_ABS,6,[],[],[],[],LB,UB,@simple_constraint,[1,2,3,4,5,6],options)
+% S12
+%     83    68     5     6    38    -1
+%     76    66     6    10    37    -6
+%     76    66     7    10    36    -5
+% S1
+%     41    65     3     9    29     1
+%     46    80     4     3    26     5
+%     42    33     7     4    28     6
+% S2
+%     43    57     5     2    60    -5
+%     42    47     2     3    65    -7
+%     42    47     2     3    65    -7
 
-% Run on darkroom dataset
-%[x,fval,exitflag,output,population,scores] = ga(@Evolution_darkroom,5,[],[],[],[],LB,UB,@simple_constraint,[1,2,3,4,5],options)
-
-% Run on outside dataset
-%[x,fval,exitflag,output,population,scores] = ga(@Evolution_outside,5,[],[],[],[],LB,UB,@simple_constraint,[1,2,3,4,5],options)
-
-%Run with matlab only
-[x,fval,exitflag,output,population,scores] = ga(@Evolution_Matlab_Only,6,[],[],[],[],LB,UB,@simple_constraint,[1,2,3,4,5,6],options)
-
-%close
-%     1   281   152     1    41
-%     1   498   193     1    35
-%     1   198   136     1    38
-%center
-%      1   385   647     1    27
-%      1   382   647     1    27
-%      1   359   723     1    26
-%far
-%      1   485   697     1    17
-%      1   486   699     1    17
-
+%Run with matlab only (Standard deviation mode)
+%[x,fval,exitflag,output,population,scores] = ga(@Evolution_Matlab_Only_STD,5,[],[],[],[],LB,UB,@simple_constraint,[1,2,3,4,5],options)
+% S12
+%     85    35     3     8    23
+%     85    35     3     8    23
+%     85    35     2     8    23
+% S1
+%     66    36     1     7    27
+%     66    33     5     6    28
+%     65    35     3     5    29
+% S2
+%     75    51     3     9    45
+%     75    50     3     8    45
+%     75    50     3     8    45
